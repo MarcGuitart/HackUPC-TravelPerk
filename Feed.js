@@ -1,53 +1,56 @@
 import React from 'react';
-import { View, Button } from 'react-native';
+import { View, Text, Button } from 'react-native';
 
-const FeedScreen = () => {
+const FeedScreen = ({ navigation }) => {
     const handleMessagesPress = () => {
         // Lógica para navegar a la pantalla de mensajes
-        <Text style={{ color: 'white', fontSize: 20 }}>Create your account</Text>
-        
+        navigation.navigate('Messages');
     };
 
     const handleMapPress = () => {
         // Lógica para navegar a la pantalla de mapa
+        navigation.navigate('Map');
     };
 
     const handleCreateEventPress = () => {
         // Lógica para navegar a la pantalla de creación de evento
+        navigation.navigate('CreateEvent');
     };
 
     return (
-        <View>
-            {/* Contenido de la pantalla principal */}
-            {/* ... */}
-
-            {/* Barra de botones */}
-            
-      <Button
-        title="Messages"
-        onPress={handleRegister}
-        style={{ marginTop: 10 }}
-      />
-      
-      <Button
-        title="Create Event"
-        onPress={handleRegister}
-        style={{ marginTop: 10 }}
-      />
-      
-      <Button
-        title="Events Near Me"
-        onPress={handleRegister}
-        style={{ marginTop: 10 }}
-      />
-            <View>
+        <ImageBackground source={require('./path_to_your_image/background_image.jpg')} style={styles.backgroundImage}>
+            <View style={styles.container}>
+                <Text style={{ color: 'white', fontSize: 20 }}>Feed Screen</Text>
                 
-                <Button title="Mensajes" onPress={handleMessagesPress} />
-                <Button title="Mapa" onPress={handleMapPress} />
-                <Button title="Crear Evento" onPress={handleCreateEventPress} />
+                {/* Botones */}
+                <View style={styles.buttonContainer}>
+                    <Button title="Messages" onPress={handleMessagesPress} />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <Button title="Map" onPress={handleMapPress} />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <Button title="Create Event" onPress={handleCreateEventPress} />
+                </View>
             </View>
-        </View>
+        </ImageBackground>
     );
 };
+
+const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    buttonContainer: {
+        marginTop: 20,
+    }
+});
 
 export default FeedScreen;
