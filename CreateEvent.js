@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Platform } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Platform, ImageBackground} from 'react-native';
 import { supabase } from './src/supabase';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
@@ -73,6 +73,7 @@ export default function CreatePlanScreen({ navigation }) {
   };
 
   return (
+    <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
     <View style={styles.container}>
       <Text style={styles.title}>Create your plan</Text>
 
@@ -182,30 +183,54 @@ export default function CreatePlanScreen({ navigation }) {
         />
       )}
     </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#144fcc',
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 100,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    marginLeft: 10,
   },
   title: {
+    fontFamily: 'nombre-de-la-fuente', // Reemplaza 'nombre-de-la-fuente' con el nombre de la fuente deseada
+    fontSize: 35,
+    fontWeight: 'bold',
+    fontFamily: 'sans-serif',
     color: 'white',
-    fontSize: 20,
-    marginBottom: 20,
+    marginBottom: 50,
   },
-  input: {
-    backgroundColor: 'white',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 10,
-    width: '70%',
-  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
+},
+input: {
+  backgroundColor: 'rgba(255, 255, 255, 0.7)',
+  padding: 10,
+  borderRadius: 5,
+  marginTop: 10,
+  width: '100%',
+},
   button: {
-    marginTop: 20,
-    width: '80%',
+    padding: 10,
+    width: '100%',
+  },
+  datePickerButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#28A4D4',
+    borderRadius: 5,
+    padding: 150,
+    marginTop: 10,
+    width: '90%',
+    justifyContent: 'center',
   },
 });
