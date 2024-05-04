@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ImageBackground, FlatList, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; // Importamos los íconos de Ant Design
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => { // Asegúrate de recibir 'navigation' como prop
+
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
@@ -25,28 +26,31 @@ const SearchScreen = () => {
     );
 
     return (
-      <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
-        <View style={styles.container}>
-            <View style={styles.searchContainer}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Buscar..."
-                    value={searchQuery}
-                    onChangeText={setSearchQuery}
-                />
-                <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
-                    <AntDesign name="search1" size={24} color="white" />
+        <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
+            <View style={styles.container}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                    <AntDesign name="arrowleft" size={24} color="white" />
                 </TouchableOpacity>
+                <View style={styles.searchContainer}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Buscar..."
+                        value={searchQuery}
+                        onChangeText={setSearchQuery}
+                    />
+                    <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
+                        <AntDesign name="search1" size={24} color="white" />
+                    </TouchableOpacity>
+                </View>
+                {searchResults.length > 0 && (
+                    <FlatList
+                        data={searchResults}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id}
+                        style={styles.resultsList}
+                    />
+                )}
             </View>
-            {searchResults.length > 0 && (
-                <FlatList
-                    data={searchResults}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id}
-                    style={styles.resultsList}
-                />
-            )}
-        </View>
         </ImageBackground>
     );
 };
@@ -54,19 +58,20 @@ const SearchScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         padding: 20,
     },
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 20,
+        marginTop: 70, // Mueve la barra de búsqueda más abajo de la flecha de retroceso
     },
     input: {
         flex: 1,
         height: 40,
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: 'white', // Cambia el color del borde a blanco
+        backgroundColor: 'white', // Cambia el color de fondo a blanco
         borderRadius: 20,
         paddingHorizontal: 15,
     },
@@ -88,6 +93,17 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         borderRadius: 5,
         marginBottom: 10,
+    },
+    backButton: {
+        position: 'absolute',
+        top: 30,
+        left: 30,
+        zIndex: 1, // Para que el botón esté por encima de los otros elementos
+    },
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
     },
 });
 
