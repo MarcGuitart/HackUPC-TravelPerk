@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './HomeScreen'; // Importa tus componentes de pantalla aquí
 import RegisterScreen from './RegisterScreen';
 import LoginScreen from './LoginScreen';
+import AboutYou from './AboutYou';
 
 const Stack = createStackNavigator();
 

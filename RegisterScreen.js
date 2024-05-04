@@ -53,7 +53,7 @@ export default function RegisterScreen() {
     console.error('Error al registrar usuario:', error.message);
   }
 
-  () => navigation.navigate('Preference');
+  () => navigation.navigate('Preferences');
 };
 
   return (
