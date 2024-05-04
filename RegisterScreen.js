@@ -3,12 +3,11 @@ import { View, Text, TextInput, Button } from 'react-native';
 import { supabase } from './src/supabase';
 
 export default function RegisterScreen() {
-  const [username, setUsername] = React.useState('');
+  const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
   const [dni, setDni] = React.useState('');
   const [age, setAge] = React.useState('');
-  const [email, setEmail] = React.useState('');
   const [phoneNumber, setPhoneNumber] = React.useState('');
 
   const handleRegister = async () => {
@@ -31,16 +30,15 @@ export default function RegisterScreen() {
 
     // Aquí puedes implementar la lógica para registrar al usuario
     console.log('DNI:', dni);
-    console.log('Username:', username);
+    console.log('Email:', email);
     console.log('Password:', password);
     console.log('Confirm Password:', confirmPassword);
     console.log('Age:', age);
-    console.log('Email:', email);
     console.log('Phone Number:', phoneNumber);
 
     // Por ejemplo, podrías guardar el resto de los datos en una tabla de usuarios personalizada en Supabase
     const { data, error: insertError } = await supabase.from('Users').insert([
-      { dni, username, phoneNumber, age, email},
+      { dni, email, phoneNumber, age},
     ]);
 
     if (insertError) {
@@ -53,7 +51,7 @@ export default function RegisterScreen() {
     console.error('Error al registrar usuario:', error.message);
   }
 
-  () => navigation.navigate('Preferences');
+  navigation.navigate('Preferences');
 };
 
   return (
@@ -62,9 +60,10 @@ export default function RegisterScreen() {
       
       <TextInput
         style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
-        placeholder="Enter your username"
-        value={username}
-        onChangeText={text => setUsername(text)}
+        placeholder="Enter your email"
+        keyboardType="email-address"
+        value={email}
+        onChangeText={text => setEmail(text)}
       />
       
       <TextInput
@@ -95,14 +94,6 @@ export default function RegisterScreen() {
         placeholder="Enter your age"
         value={age}
         onChangeText={text => setAge(text)}
-      />
-      
-      <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
-        placeholder="Enter your email"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={text => setEmail(text)}
       />
       
       <TextInput
