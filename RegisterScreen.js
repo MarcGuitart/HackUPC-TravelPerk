@@ -9,7 +9,7 @@ export default function RegisterScreen() {
 
 
   const handleRegister = async () => {
-    navigation.navigate('Preferences');
+    //navigation.navigate('Prefer');
 
   try {
       if (password !== confirmPassword) {
@@ -73,7 +73,8 @@ export default function RegisterScreen() {
       
       <Button
         title="Register"
-        onPress={handleRegister}
+        //onPress={handleRegister}
+        onPress={() => navigation.navigate('Preferences')}
         style={{ marginTop: 10 }}
       />
     </View>
