@@ -38,8 +38,6 @@ export default function App() {
         <Stack.Screen name="Event" component={CreateEvent} />
         <Stack.Screen name="Search" component={Search} />
         <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="Home2" component={HomeScreen} />
-
         </>
       ) : (
         <>
@@ -49,6 +47,9 @@ export default function App() {
         <Stack.Screen name="Preferences" component={AboutYou} />
         <Stack.Screen name="Feed" component={Feed} />
         <Stack.Screen name="Event" component={CreateEvent} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Search" component={Search} />
+
         </> )}
         
       </Stack.Navigator>

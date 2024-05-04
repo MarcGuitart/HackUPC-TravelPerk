@@ -13,7 +13,7 @@ const ProfileScreen = ({ navigation }) => {
             //navigation.navigate('Login');
             navigation.reset({
                 index: 0,
-                routes: [{ name: 'Home2' }],
+                routes: [{ name: 'Home' }],
               });
         }
     };
