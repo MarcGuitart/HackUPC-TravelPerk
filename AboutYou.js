@@ -12,9 +12,13 @@ export default function PreferenceScreen({ navigation }) {
     
     try {
       // Insertar los datos en la tabla 'Users' de Supabase
-      const { data, error } = await supabase.from('Users').insert([
-        { dni, username, phoneNumber, age },
+
+      const { data, error } = await supabase
+      .from('UserData')
+      .insert([
+        { dni: dni, username: username, phone: phoneNumber, age: age},
       ]);
+        
 
       if (error) {
         console.error('Error al guardar las preferencias:', error.message);
