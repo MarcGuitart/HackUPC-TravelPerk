@@ -8,24 +8,35 @@ export default function CreatePlanScreen({ navigation }) {
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState('');
+
 
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
-  const handleCreatePlan = async () => {
+  const handleCreatePlan = async () => {  
     console.log('Plan name:', planName);
     console.log('Description:', description);
     console.log('Location:', location);
     console.log('Date:', date);
+    console.log('Participant:', participant);
+
+    const creatorUserId = await supabase.auth.getUser();
+    console.log(creatorData)
+    let { data: creatorData, error: creatorError } = await supabase
+      .from('UserData')
+      .select('username')
+      .eq('id', creatorUserId)
 
     
-
+     const participant = [];
+     participant.push(creatorData.username); 
+    
+    
     try {
       const { data, error } = await supabase
         .from('PlanTable')
         .insert([
-          { planName: planName, description: description, location: location, date: date},
+          { planName: planName, description: description, location: location, date: date, participant: participant},
         ]);
 
       if (error) {
