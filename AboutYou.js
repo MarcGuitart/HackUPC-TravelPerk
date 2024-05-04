@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { supabase } from './src/supabase';
 
 export default function PreferenceScreen({ navigation }) {
@@ -70,40 +70,91 @@ export default function PreferenceScreen({ navigation }) {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 20, marginBottom: 20 }}>
-        Insert your data for security reasons
-      </Text>
+    <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
+      <View style={styles.container}>
+        <Text style={styles.title}>
+          Insert your data for security reasons
+        </Text>
 
-      <Text>DNI:</Text>
-      <TextInput
-        style={{ borderWidth: 1, borderColor: 'gray', padding: 5, margin: 5 }}
-        value={dni}
-        onChangeText={(text) => setDni(text)}
-      />
+        <TextInput
+          style={styles.input}
+          value={dni}
+          onChangeText={(text) => setDni(text)}
+          placeholder="Enter your DNI"
+          placeholderTextColor="#000"
+        />
 
-      <Text>Username:</Text>
-      <TextInput
-        style={{ borderWidth: 1, borderColor: 'gray', padding: 5, margin: 5 }}
-        value={username}
-        onChangeText={(text) => setUsername(text)}
-      />
+        <TextInput
+          style={styles.input}
+          value={username}
+          onChangeText={(text) => setUsername(text)}
+          placeholder="Enter your username"
+          placeholderTextColor="#000"
+        />
 
-      <Text>Phone Number:</Text>
-      <TextInput
-        style={{ borderWidth: 1, borderColor: 'gray', padding: 5, margin: 5 }}
-        value={phoneNumber}
-        onChangeText={(text) => setPhoneNumber(text)}
-      />
+        <TextInput
+          style={styles.input}
+          value={phoneNumber}
+          onChangeText={(text) => setPhoneNumber(text)}
+          placeholder="Enter your phone number"
+          placeholderTextColor="#000"
+        />
 
-      <Text>Age:</Text>
-      <TextInput
-        style={{ borderWidth: 1, borderColor: 'gray', padding: 5, margin: 5 }}
-        value={age}
-        onChangeText={(text) => setAge(text)}
-      />
+        <TextInput
+          style={styles.input}
+          value={age}
+          onChangeText={(text) => setAge(text)}
+          placeholder="Enter your age"
+          placeholderTextColor="#000"
+        />
 
-      <Button title="Save Data" onPress={handleSavePreferences} />
-    </View>
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: '#28A4D4' }]}
+          onPress={handleSavePreferences}
+        >
+          <Text style={styles.buttonText}>Enter</Text>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 35,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 30,
+  },
+  input: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    width: '80%',
+    color: '#000', // Asegura que el texto dentro de la caja sea negro
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '11%',
+    height: 50,
+    marginTop: 20, // Separación de las cajas de texto
+    borderRadius: 10,
+    backgroundColor: '#28A4D4',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+  },
+});
