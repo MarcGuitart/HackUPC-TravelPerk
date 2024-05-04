@@ -2,14 +2,14 @@ import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import { supabase } from './src/supabase';
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
 
 
   const handleRegister = async () => {
-    //navigation.navigate('Prefer');
+  navigation.navigate('Preferences');
 
   try {
       if (password !== confirmPassword) {
@@ -73,8 +73,8 @@ export default function RegisterScreen() {
       
       <Button
         title="Register"
-        //onPress={handleRegister}
-        onPress={() => navigation.navigate('Preferences')}
+        onPress={handleRegister}
+        //onPress={() => navigation.navigate('Preferences')}
         style={{ marginTop: 10 }}
       />
     </View>
