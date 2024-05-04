@@ -3,16 +3,16 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { supabase } from './src/supabase';
 
 export default function RegisterScreen() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = async () => {
     // Aquí puedes implementar la lógica para registrar al usuario
-    console.log('Username:', username);
+    console.log('Email:', email);
     console.log('Password:', password);
     
     let { data, error } = await supabase.auth.signInWithPassword({
-      email: username,
+      email: email,
       password: password,
     })
 
@@ -30,9 +30,9 @@ export default function RegisterScreen() {
       
       <TextInput
         style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
-        placeholder="Enter your username"
-        value={username}
-        onChangeText={text => setUsername(text)}
+        placeholder="Enter your email"
+        value={email}
+        onChangeText={text => setEmail(text)}
       />
       
       <TextInput
