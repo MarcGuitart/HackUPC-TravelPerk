@@ -9,48 +9,48 @@ export default function CreatePlanScreen({ navigation }) {
 
   const handleCreatePlan = () => {
     // Aquí puedes implementar la lógica para crear un nuevo plan
-    console.log('Nombre del plan:', planName);
-    console.log('Descripción:', description);
-    console.log('Ubicación:', location);
-    console.log('Hora de inicio:', startTime);
+    console.log('Plan name:', planName);
+    console.log('Description:', description);
+    console.log('Location:', location);
+    console.log('Start time:', startTime);
     
     // Aquí podrías enviar los datos del plan a tu backend, guardarlos en una base de datos, etc.
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Crear un nuevo plan</Text>
+      <Text style={styles.title}>Create your plan</Text>
       
       <TextInput
         style={styles.input}
-        placeholder="Nombre del plan"
+        placeholder="Plan name"
         value={planName}
         onChangeText={text => setPlanName(text)}
       />
       
       <TextInput
         style={styles.input}
-        placeholder="Descripción"
+        placeholder="Description"
         value={description}
         onChangeText={text => setDescription(text)}
       />
       
       <TextInput
         style={styles.input}
-        placeholder="Ubicación"
+        placeholder="Location"
         value={location}
         onChangeText={text => setLocation(text)}
       />
       
       <TextInput
         style={styles.input}
-        placeholder="Hora de inicio (ej. 10:00 AM)"
+        placeholder="Start time"
         value={startTime}
         onChangeText={text => setStartTime(text)}
       />
       
       <Button
-        title="Crear plan"
+        title="Create plan"
         onPress={handleCreatePlan}
         style={styles.button}
       />
@@ -59,27 +59,25 @@ export default function CreatePlanScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
-  title: {
-    fontSize: 20,
-    marginBottom: 20,
-  },
-  input: {
-    width: '100%',
-    height: 40,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 20,
-  },
-  button: {
-    marginTop: 20,
-    width: '80%',
-  },
-});
+    container: {
+      flex: 1,
+      backgroundColor: '#144fcc',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    title: {
+      color: 'white',
+      fontSize: 20,
+      marginBottom: 20,
+    },
+    input: {
+      backgroundColor: 'white',
+      padding: 10,
+      borderRadius: 5,
+      marginTop: 10,
+    },
+    button: {
+      marginTop: 20,
+      width: '80%',
+    },
+  });
