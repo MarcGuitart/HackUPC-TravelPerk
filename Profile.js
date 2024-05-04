@@ -9,7 +9,12 @@ const ProfileScreen = ({ navigation }) => {
         if (error) console.log('Error logging out:', error.message);
         else {
             // Aquí puedes navegar a la pantalla de inicio de sesión o cualquier otra pantalla que desees
-            navigation.navigate('Login');
+            //window.location.reload();
+            //navigation.navigate('Login');
+            navigation.reset({
+                index: 0,
+                routes: [{ name: 'Home2' }],
+              });
         }
     };
 

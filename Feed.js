@@ -14,15 +14,6 @@ const FeedScreen = ({ navigation }) => {
     const handleProfilePress = () => {
         navigation.navigate('Profile');
     };
-    
-
-    const logOut = async () => {
-        let { error } = await supabase.auth.signOut();
-        if (error) console.log('Error logging out:', error.message);
-        else {
-            window.location.reload();
-        }
-    };
 
     return (
         <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
@@ -44,9 +35,6 @@ const FeedScreen = ({ navigation }) => {
                         <AntDesign name="user" size={24} color="black" />
                         <Text>Profile</Text>
                     </TouchableOpacity>
-                    <View style={styles.buttonContainer}>
-                    <Button title="Log Out" onPress={logOut} />
-                    </View>
                 </View>
         </ImageBackground>
     );
