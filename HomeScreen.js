@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import { supabase } from './src/supabase';
 
 export default function HomeScreen({ navigation }) {
+
+  const [user, setUser] = useState('');
+
+  const fetchUser = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    const username = user ? user.email : 'Guest';
+    setUser(username);
+    console.log(`Username: ${username}`);
+  };
+
+  React.useEffect(() => {
+    fetchUser();
+  }, []);
+
+  React.useEffect(() => {
+    fetchUser();
+  });
+
   return (
     <View style={styles.container}>
       <Button
@@ -15,6 +34,9 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate('Register')}
         style={styles.button}
       />
+      <Text style={{ color: 'white', fontSize: 20, marginTop: 20 }}>
+        {user ? `Bienvenido, ${user}` : 'Bienvenido, Invitado'}
+      </Text>
     </View>
   );
 }
