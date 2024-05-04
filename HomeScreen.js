@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, StyleSheet, StatusBar } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, Image, StyleSheet, StatusBar } from 'react-native';
 import { supabase } from './src/supabase';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -21,9 +21,8 @@ export default function HomeScreen({ navigation }) {
   return (
     <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
     <View style={styles.container}>
-    <Text style={styles.title}>JoinUs</Text> {/* Título de la aplicación */}
+    <Image source={require('./assets/HomeScreenPhoto.png')} style={styles.image} />
       <Text style={styles.welcomeText}>
-        {user ? `Bienvenido, ${user}` : 'Bienvenido, Invitado'}
       </Text>
       <StatusBar translucentbackgroundColor = 'transparent' />
       <TouchableOpacity
@@ -61,20 +60,17 @@ const styles = StyleSheet.create({
     borderTopColor: '#ccc',
 },
 
-title: {
-  fontFamily: 'nombre-de-la-fuente', // Reemplaza 'nombre-de-la-fuente' con el nombre de la fuente deseada
-  fontSize: 85,
-  fontWeight: 'bold',
-  fontFamily: 'sans-serif',
-  color: 'white',
-  marginBottom: 50,
+image: {
+  width: 450,
+  height: 450,
+  marginBottom: -70,
 },
 
   button: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '80%',
+    width: '30%',
     height: 50,
     marginBottom: 20,
     borderRadius: 10,
