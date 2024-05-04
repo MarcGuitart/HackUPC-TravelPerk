@@ -11,7 +11,8 @@ export default function RegisterScreen() {
   const [phoneNumber, setPhoneNumber] = React.useState('');
 
   const handleRegister = async () => {
-    
+    navigation.navigate('Preferences');
+
   try {
       if (password !== confirmPassword) {
         console.error('Las contraseñas no coinciden');
@@ -50,8 +51,6 @@ export default function RegisterScreen() {
   } catch (error) {
     console.error('Error al registrar usuario:', error.message);
   }
-
-  navigation.navigate('Preferences');
 };
 
   return (
