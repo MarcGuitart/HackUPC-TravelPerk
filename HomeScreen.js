@@ -36,7 +36,7 @@ export default function HomeScreen({ navigation }) {
         style={[styles.button, { backgroundColor: '#042F83' }]}
         onPress={() => navigation.navigate('Register')}
       >
-        <AntDesign name="adduser" size={24} color="white" /> {/* Cambiado el icono a "adduser" */}
+        <AntDesign name="adduser" size={24} color="white" />
         <Text style={styles.buttonText}>Registrarse</Text>
       </TouchableOpacity>
     </View>
