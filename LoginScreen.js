@@ -5,10 +5,21 @@ export default function RegisterScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     // Aquí puedes implementar la lógica para registrar al usuario
     console.log('Username:', username);
     console.log('Password:', password);
+    
+    const { user, error } = await supabase.auth.signIn({
+      email: email,
+      password: password
+    });
+
+    if (error) {
+      alert(error.message);
+    } else {
+      alert('Login successful!');
+    }
   };
 
   return (
