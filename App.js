@@ -6,6 +6,7 @@ import RegisterScreen from './RegisterScreen';
 import LoginScreen from './LoginScreen';
 import AboutYou from './AboutYou';
 import Feed from './Feed';
+import CreateEvent from './CreateEvent';
 import { supabase } from './src/supabase';
 
 
@@ -32,6 +33,7 @@ export default function App() {
         <>
         <Stack.Screen name="Feed" component={Feed} />
         <Stack.Screen name="Preferences" component={AboutYou} />
+        <Stack.Screen name="Event" component={CreateEvent} />
         </>
       ) : (
         <>

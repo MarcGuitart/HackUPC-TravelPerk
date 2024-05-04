@@ -11,7 +11,7 @@ const FeedScreen = ({ navigation }) => {
     };
 
     const handleCreateEventPress = () => {
-        // Lógica para navegar a la pantalla de creación de evento
+        navigation.navigate('Event');
     };
 
     return (

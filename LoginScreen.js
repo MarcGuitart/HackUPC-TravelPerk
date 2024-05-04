@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { supabase } from './src/supabase';
 
-export default function RegisterScreen({ navigation }) {
+export default function RegisterScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,6 +15,7 @@ export default function RegisterScreen({ navigation }) {
       email: email,
       password: password,
     })
+
 
     if (error) {
       alert(error.message);
