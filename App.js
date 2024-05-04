@@ -38,6 +38,7 @@ export default function App() {
         <Stack.Screen name="Event" component={CreateEvent} />
         <Stack.Screen name="Search" component={Search} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Home2" component={HomeScreen} />
 
         </>
       ) : (
