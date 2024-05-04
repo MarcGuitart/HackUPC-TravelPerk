@@ -18,7 +18,7 @@ const FeedScreen = ({ navigation }) => {
     };
 
     return (
-        <ImageBackground source={require('./path_to_your_image/background_image.jpg')} style={styles.backgroundImage}>
+        <ImageBackground source={require('./assets/background.jpg')} style={styles.backgroundImage}>
             <View style={styles.container}>
                 <Text style={{ color: 'white', fontSize: 20 }}>Feed Screen</Text>
                 
