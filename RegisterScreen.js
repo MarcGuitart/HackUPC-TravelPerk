@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
+import { supabase } from './src/supabase';
 
 export default function RegisterScreen() {
   const [username, setUsername] = React.useState('');
@@ -10,16 +11,49 @@ export default function RegisterScreen() {
   const [email, setEmail] = React.useState('');
   const [phoneNumber, setPhoneNumber] = React.useState('');
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
+    
+  try {
+      if (password !== confirmPassword) {
+        console.error('Las contraseñas no coinciden');
+        return;
+      }
+
+      const { user, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
+      if (error) {
+        console.error('Error al registrar usuario:', error.message);
+        return;
+      }
+
     // Aquí puedes implementar la lógica para registrar al usuario
+    console.log('DNI:', dni);
     console.log('Username:', username);
     console.log('Password:', password);
     console.log('Confirm Password:', confirmPassword);
-    console.log('DNI:', dni);
     console.log('Age:', age);
     console.log('Email:', email);
     console.log('Phone Number:', phoneNumber);
-  };
+
+    // Por ejemplo, podrías guardar el resto de los datos en una tabla de usuarios personalizada en Supabase
+    const { data, error: insertError } = await supabase.from('Users').insert([
+      { dni, username, phoneNumber, age, email},
+    ]);
+
+    if (insertError) {
+      console.error('Error al insertar usuario en la base de datos:', insertError.message);
+      return;
+    }
+
+    console.log('Datos del usuario guardados en la base de datos:', data);
+  } catch (error) {
+    console.error('Error al registrar usuario:', error.message);
+  }
+
+};
 
   return (
     <View style={{ flex: 1, backgroundColor: '#144fcc', justifyContent: 'center', alignItems: 'center' }}>
