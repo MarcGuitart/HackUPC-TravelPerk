@@ -6,9 +6,7 @@ export default function RegisterScreen() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
-  const [dni, setDni] = React.useState('');
-  const [age, setAge] = React.useState('');
-  const [phoneNumber, setPhoneNumber] = React.useState('');
+
 
   const handleRegister = async () => {
     navigation.navigate('Preferences');
@@ -30,17 +28,9 @@ export default function RegisterScreen() {
       }
 
     // Aquí puedes implementar la lógica para registrar al usuario
-    console.log('DNI:', dni);
     console.log('Email:', email);
     console.log('Password:', password);
     console.log('Confirm Password:', confirmPassword);
-    console.log('Age:', age);
-    console.log('Phone Number:', phoneNumber);
-
-    // Por ejemplo, podrías guardar el resto de los datos en una tabla de usuarios personalizada en Supabase
-    const { data, error: insertError } = await supabase.from('Users').insert([
-      { dni, email, phoneNumber, age},
-    ]);
 
     if (insertError) {
       console.error('Error al insertar usuario en la base de datos:', insertError.message);
@@ -79,28 +69,6 @@ export default function RegisterScreen() {
         secureTextEntry={true}
         value={confirmPassword}
         onChangeText={text => setConfirmPassword(text)}
-      />
-      
-      <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
-        placeholder="Enter your DNI"
-        value={dni}
-        onChangeText={text => setDni(text)}
-      />
-      
-      <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
-        placeholder="Enter your age"
-        value={age}
-        onChangeText={text => setAge(text)}
-      />
-      
-      <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
-        placeholder="Enter your phone number"
-        keyboardType="phone-pad"
-        value={phoneNumber}
-        onChangeText={text => setPhoneNumber(text)}
       />
       
       <Button
