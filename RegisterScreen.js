@@ -83,7 +83,7 @@ export default function RegisterScreen({ navigation }) {
           style={[styles.button, { backgroundColor: '#042f83' }]}
           onPress={handleRegister}
         >
-        <AntDesign name="adduser" size={24} color="white" /> {/* Cambiado el icono a "adduser" */}
+        <AntDesign name="adduser" size={24} color="white" />
           <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
       </View>
