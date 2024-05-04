@@ -8,6 +8,7 @@ import AboutYou from './AboutYou';
 import Feed from './Feed';
 import CreateEvent from './CreateEvent';
 import Search from './Search';
+import Profile from './Profile';
 import { supabase } from './src/supabase';
 
 
@@ -36,6 +37,7 @@ export default function App() {
         <Stack.Screen name="Preferences" component={AboutYou} />
         <Stack.Screen name="Event" component={CreateEvent} />
         <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen name="Profile" component={Profile} />
 
         </>
       ) : (

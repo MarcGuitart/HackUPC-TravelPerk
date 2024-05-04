@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { supabase } from './src/supabase';
 
-const ProfileScreen = ({ navigation }) => {
+export default function Profile() {
     const handleLogout = async () => {
         let { error } = await supabase.auth.signOut();
         if (error) console.log('Error logging out:', error.message);
@@ -54,5 +54,3 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
     },
 });
-
-export default ProfileScreen;
