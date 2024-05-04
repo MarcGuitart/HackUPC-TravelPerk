@@ -13,7 +13,7 @@ import { supabase } from './src/supabase';
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState('Guest');
 
   const fetchUser = async () => {
     const { data: { user } } = await supabase.auth.getUser();
