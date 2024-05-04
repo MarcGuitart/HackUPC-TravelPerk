@@ -28,7 +28,11 @@ export default function PreferenceScreen({ navigation }) {
       console.log('Datos guardados correctamente:', data);
 
       // Navegar a la siguiente pantalla después de guardar los datos
-      navigation.navigate('Feed');
+      //navigation.navigate('Feed');
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Feed' }],
+      });
     } catch (error) {
       console.error('Error al guardar las preferencias:', error.message);
     }
