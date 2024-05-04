@@ -13,7 +13,7 @@ const ProfileScreen = ({ navigation }) => {
             //navigation.navigate('Login');
             navigation.reset({
                 index: 0,
-                routes: [{ name: 'Home2' }],
+                routes: [{ name: 'Home' }],
               });
         }
     };
@@ -23,26 +23,26 @@ const ProfileScreen = ({ navigation }) => {
             <View style={styles.container}>
                 <Text style={{ color: 'white', fontSize: 20 }}>Profile</Text>
 
-                {/* Información del perfil */}
-                <TouchableOpacity style={styles.menuItem}>
-                    <Text style={{ color: 'white' }}>Información del Perfil</Text>
-                </TouchableOpacity>
+            {/* Información del perfil */}
+            <TouchableOpacity style={styles.menuItem}>
+                <Text style={{ color: 'white' }}>Información del Perfil</Text>
+            </TouchableOpacity>
 
-                {/* Eventos creados */}
-                <TouchableOpacity style={styles.menuItem}>
-                    <Text style={{ color: 'white' }}>Eventos Creados</Text>
-                </TouchableOpacity>
+            {/* Eventos creados */}
+            <TouchableOpacity style={styles.menuItem}>
+                <Text style={{ color: 'white' }}>Eventos Creados</Text>
+            </TouchableOpacity>
 
-                {/* Participaciones */}
-                <TouchableOpacity style={styles.menuItem}>
-                    <Text style={{ color: 'white' }}>Participaciones</Text>
-                </TouchableOpacity>
+            {/* Participaciones */}
+            <TouchableOpacity style={styles.menuItem}>
+                <Text style={{ color: 'white' }}>Participaciones</Text>
+            </TouchableOpacity>
 
-                {/* Log out */}
-                <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-                    <Text style={{ color: 'white', fontSize: 14 }}>Log Out</Text>
-                </TouchableOpacity>
-            </View>
+            {/* Log out */}
+            <TouchableOpacity style={[styles.menuItem, styles.logoutButton]} onPress={handleLogout}>
+                <Text style={{ color: 'white', fontSize: 14 }}>Log Out</Text>
+            </TouchableOpacity>
+        </View>
         </ImageBackground>
     );
 };
@@ -50,8 +50,8 @@ const ProfileScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     backgroundImage: {
         flex: 1,
-        resizeMode: "cover",
-        justifyContent: "center"
+        resizeMode: 'cover',
+        justifyContent: 'center',
     },
     container: {
         flex: 1,
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
         width: '100%',
+        alignItems: 'flex-start',
     },
     logoutButton: {
         backgroundColor: 'red',
