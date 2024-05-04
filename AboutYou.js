@@ -3,12 +3,10 @@ import { View, Text, TextInput, Button } from 'react-native';
 import { supabase } from './src/supabase';
 
 export default function RegisterScreen() {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [confirmPassword, setConfirmPassword] = React.useState('');
+
   const [dni, setDni] = React.useState('');
   const [age, setAge] = React.useState('');
-  const [email, setEmail] = React.useState('');
+  const [name, setName] = React.useState('');
   const [phoneNumber, setPhoneNumber] = React.useState('');
 
   const handleRegister = async () => {
@@ -52,8 +50,8 @@ export default function RegisterScreen() {
   } catch (error) {
     console.error('Error al registrar usuario:', error.message);
   }
+  
 
-  () => navigation.navigate('Preference');
 };
 
   return (
