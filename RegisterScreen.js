@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, Alert } from 'react-native';
 import { supabase } from './src/supabase';
 
 export default function RegisterScreen({ navigation }) {
@@ -7,41 +7,49 @@ export default function RegisterScreen({ navigation }) {
   const [password, setPassword] = React.useState('');
   const [confirmPassword, setConfirmPassword] = React.useState('');
 
-
   const handleRegister = async () => {
-    
     try {
-      if (password !== confirmPassword) {
-        console.error('Las contraseñas no coinciden');
-        return;
+      // Validar que todos los campos estén completos
+      if (!email || !password || !confirmPassword) {
+        throw new Error('Please fill in all fields');
       }
-      
+
+      // Validar que el email sea una dirección de email válida
+      if (!validateEmail(email)) {
+        throw new Error('Please enter a valid email address');
+      }
+
+      // Validar que la contraseña tenga al menos 6 caracteres
+      if (password.length < 6) {
+        throw new Error('Password must be at least 6 characters long');
+      }
+
+      // Validar que las contraseñas coincidan
+      if (password !== confirmPassword) {
+        throw new Error('Passwords do not match');
+      }
+
       const { user, error } = await supabase.auth.signUp({
         email,
         password,
       });
-      
-      if (error) {
-        console.error('Error al registrar usuario:', error.message);
-        return;
+
+      if (!error) {
+        navigation.navigate('Preferences');
+      } else {
+        throw new Error(error.message);
       }
-      navigation.navigate('Preferences');
-
-    // Aquí puedes implementar la lógica para registrar al usuario
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Confirm Password:', confirmPassword);
-
-    if (insertError) {
-      console.error('Error al insertar usuario en la base de datos:', insertError.message);
-      return;
+    } catch (error) {
+      alert(error.message);
+      console.error('Error registering user:', error.message);
     }
+  };
 
-    console.log('Datos del usuario guardados en la base de datos:', data);
-  } catch (error) {
-    console.error('Error al registrar usuario:', error.message);
-  }
-};
+  // Función para validar una dirección de email
+  const validateEmail = (email) => {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
 
   return (
     <View style={{ flex: 1, backgroundColor: '#144fcc', justifyContent: 'center', alignItems: 'center' }}>
@@ -74,7 +82,6 @@ export default function RegisterScreen({ navigation }) {
       <Button
         title="Register"
         onPress={handleRegister}
-        //onPress={() => navigation.navigate('Preferences')}
         style={{ marginTop: 10 }}
       />
     </View>
