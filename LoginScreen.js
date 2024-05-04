@@ -20,7 +20,8 @@ export default function RegisterScreen() {
     if (error) {
       alert(error.message);
     } else {
-      alert('Login successful!');
+      //alert('Login successful!');
+      window.location.reload();
     }
   };
 
