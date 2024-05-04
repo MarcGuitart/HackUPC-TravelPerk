@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import { supabase } from './src/supabase';
 
 const ProfileScreen = ({ navigation }) => {
@@ -8,41 +8,38 @@ const ProfileScreen = ({ navigation }) => {
         let { error } = await supabase.auth.signOut();
         if (error) console.log('Error logging out:', error.message);
         else {
-            // Aquí puedes navegar a la pantalla de inicio de sesión o cualquier otra pantalla que desees
-            //window.location.reload();
-            //navigation.navigate('Login');
             navigation.reset({
                 index: 0,
                 routes: [{ name: 'Home' }],
-              });
+            });
         }
     };
 
     return (
         <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
             <View style={styles.container}>
-                <Text style={{ color: 'white', fontSize: 20 }}>Profile</Text>
+                <Text style={styles.title}>Profile</Text>
 
-            {/* Información del perfil */}
-            <TouchableOpacity style={styles.menuItem}>
-                <Text style={{ color: 'white' }}>Información del Perfil</Text>
-            </TouchableOpacity>
+                {/* Información del perfil */}
+                <TouchableOpacity style={[styles.menuItem, styles.largeText]}>
+                    <Text style={[styles.menuItemText, styles.largeText]}>Profile Information</Text>
+                </TouchableOpacity>
 
-            {/* Eventos creados */}
-            <TouchableOpacity style={styles.menuItem}>
-                <Text style={{ color: 'white' }}>Eventos Creados</Text>
-            </TouchableOpacity>
+                {/* Eventos creados */}
+                <TouchableOpacity style={[styles.menuItem, styles.largeText]}>
+                    <Text style={[styles.menuItemText, styles.largeText]}>Created Events</Text>
+                </TouchableOpacity>
 
-            {/* Participaciones */}
-            <TouchableOpacity style={styles.menuItem}>
-                <Text style={{ color: 'white' }}>Participaciones</Text>
-            </TouchableOpacity>
+                {/* Participaciones */}
+                <TouchableOpacity style={[styles.menuItem, styles.largeText]}>
+                    <Text style={[styles.menuItemText, styles.largeText]}>Events Joined</Text>
+                </TouchableOpacity>
 
-            {/* Log out */}
-            <TouchableOpacity style={[styles.menuItem, styles.logoutButton]} onPress={handleLogout}>
-                <Text style={{ color: 'white', fontSize: 14 }}>Log Out</Text>
-            </TouchableOpacity>
-        </View>
+                {/* Log out */}
+                <TouchableOpacity style={[styles.menuItem, styles.logoutButton]} onPress={handleLogout}>
+                    <Text style={{ color: 'white', fontSize: 14 }}>Log Out</Text>
+                </TouchableOpacity>
+            </View>
         </ImageBackground>
     );
 };
@@ -58,6 +55,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    title: {
+        fontFamily: 'nombre-de-la-fuente', // Reemplaza 'nombre-de-la-fuente' con el nombre de la fuente deseada
+        fontSize: 60,
+        fontWeight: 'bold',
+        fontFamily: 'sans-serif',
+        color: 'white',
+        marginBottom: 20,
+    },
     menuItem: {
         padding: 10,
         borderBottomWidth: 1,
@@ -65,13 +70,21 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'flex-start',
     },
+    menuItemText: {
+        color: 'white',
+        fontSize: 16,
+    },
+    largeText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
     logoutButton: {
         backgroundColor: 'red',
         paddingVertical: 10,
         paddingHorizontal: 14,
         borderRadius: 20,
         marginTop: 20,
-        width: '6.5% ',
+        width: '80%',
     },
 });
 
