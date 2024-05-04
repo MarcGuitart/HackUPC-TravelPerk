@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Button, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 import { supabase } from './src/supabase';
 
-export default function Profile() {
+const ProfileScreen = ({ navigation }) => {
+
     const handleLogout = async () => {
         let { error } = await supabase.auth.signOut();
         if (error) console.log('Error logging out:', error.message);
@@ -13,31 +14,40 @@ export default function Profile() {
     };
 
     return (
-        <View style={styles.container}>
-            {/* Información del perfil */}
-            <TouchableOpacity style={styles.menuItem}>
-                <Text>Perfil</Text>
-            </TouchableOpacity>
+        <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
+            <View style={styles.container}>
+                <Text style={{ color: 'white', fontSize: 20 }}>Profile</Text>
 
-            {/* Eventos creados */}
-            <TouchableOpacity style={styles.menuItem}>
-                <Text>Eventos Creados</Text>
-            </TouchableOpacity>
+                {/* Información del perfil */}
+                <TouchableOpacity style={styles.menuItem}>
+                    <Text style={{ color: 'white' }}>Información del Perfil</Text>
+                </TouchableOpacity>
 
-            {/* Participaciones */}
-            <TouchableOpacity style={styles.menuItem}>
-                <Text>Participaciones</Text>
-            </TouchableOpacity>
+                {/* Eventos creados */}
+                <TouchableOpacity style={styles.menuItem}>
+                    <Text style={{ color: 'white' }}>Eventos Creados</Text>
+                </TouchableOpacity>
 
-            {/* Log out */}
-            <TouchableOpacity style={[styles.menuItem, styles.logoutButton]} onPress={handleLogout}>
-                <Text style={{ color: 'white' }}>Log Out</Text>
-            </TouchableOpacity>
-        </View>
+                {/* Participaciones */}
+                <TouchableOpacity style={styles.menuItem}>
+                    <Text style={{ color: 'white' }}>Participaciones</Text>
+                </TouchableOpacity>
+
+                {/* Log out */}
+                <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+                    <Text style={{ color: 'white', fontSize: 14 }}>Log Out</Text>
+                </TouchableOpacity>
+            </View>
+        </ImageBackground>
     );
 };
 
 const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -48,9 +58,14 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
         width: '100%',
-        alignItems: 'flex-start',
     },
     logoutButton: {
         backgroundColor: 'red',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 20,
+        marginTop: 20,
     },
 });
+
+export default ProfileScreen;

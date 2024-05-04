@@ -11,10 +11,10 @@ const FeedScreen = ({ navigation }) => {
     const handleAddEventPress = () => {
         navigation.navigate('Event');
     };
-
     const handleProfilePress = () => {
-        
+        navigation.navigate('Profile');
     };
+    
 
     const logOut = async () => {
         let { error } = await supabase.auth.signOut();
