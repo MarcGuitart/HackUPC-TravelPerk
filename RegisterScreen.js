@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { supabase } from './src/supabase';
 
 export default function RegisterScreen({ navigation }) {
@@ -52,11 +52,11 @@ export default function RegisterScreen({ navigation }) {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#144fcc', justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ color: 'white', fontSize: 20 }}>Create your account</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Create your account</Text>
       
       <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+        style={styles.input}
         placeholder="Enter your email"
         keyboardType="email-address"
         value={email}
@@ -64,7 +64,7 @@ export default function RegisterScreen({ navigation }) {
       />
       
       <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+        style={styles.input}
         placeholder="Enter your password"
         secureTextEntry={true}
         value={password}
@@ -72,7 +72,7 @@ export default function RegisterScreen({ navigation }) {
       />
       
       <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+        style={styles.input}
         placeholder="Confirm your password"
         secureTextEntry={true}
         value={confirmPassword}
@@ -82,8 +82,41 @@ export default function RegisterScreen({ navigation }) {
       <Button
         title="Register"
         onPress={handleRegister}
-        style={{ marginTop: 10 }}
+        style={styles.button}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#144fcc',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    color: 'white',
+    fontSize: 20,
+    marginBottom: 20,
+    fontWeight: 'bold', // Agregando negrita al título
+  },
+  input: {
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+    width: '80%',
+  },
+  button: {
+    lexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+    height: 50,
+    marginBottom: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'transparent',
+  },
+});

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { supabase } from './src/supabase';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -20,9 +21,7 @@ export default function RegisterScreen({ navigation }) {
     if (error) {
       alert(error.message);
     } else {
-      //alert('Login successful!');
-      //window.location.reload();
-      navigation.reset({
+        navigation.reset({
         index: 0,
         routes: [{ name: 'Feed' }],
       });
@@ -31,28 +30,30 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Log In</Text>
+      <Text style={styles.title}>Welcome back!</Text>
       
       <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+        style={styles.input}
         placeholder="Enter your email"
         value={email}
         onChangeText={text => setEmail(text)}
       />
       
       <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+        style={styles.input}
         placeholder="Enter your password"
         secureTextEntry={true}
         value={password}
         onChangeText={text => setPassword(text)}
       />
-      <View style={styles.separator}></View>
-      <Button
-        title="Log In"
+      
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#28A4D4' }]}
         onPress={handleRegister}
-        style={styles.button}
-      />
+      >
+        <AntDesign name="login" size={24} color="white" />
+        <Text style={styles.buttonText}>Log In</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -66,14 +67,28 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  input: {
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 5,
+    width: '80%',
     marginBottom: 20,
   },
   button: {
-    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '80%',
+    height: 50,
+    borderRadius: 10,
+    marginBottom: 20,
   },
-  separator: {
-    height: 30, // Espacio entre los botones
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    marginLeft: 10,
   },
 });
