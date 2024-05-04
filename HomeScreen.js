@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, StatusBar } from 'react-native';
 import { supabase } from './src/supabase';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function HomeScreen({ navigation }) {
 
@@ -13,28 +14,28 @@ export default function HomeScreen({ navigation }) {
     console.log(`Username: ${username}`);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchUser();
   }, []);
 
-  React.useEffect(() => {
-    fetchUser();
-  });
-
   return (
     <View style={styles.container}>
-      <Button
-        title="Iniciar sesión"
+      <StatusBar hidden />
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#fb5b5a' }]}
         onPress={() => navigation.navigate('LogIn')}
-        style={styles.button}
-      />
-      <View style={styles.separator}></View>
-      <Button
-        title="Registrarse"
+      >
+        <AntDesign name="login" size={24} color="white" />
+        <Text style={styles.buttonText}>Iniciar sesión</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: '#5d8ffc' }]}
         onPress={() => navigation.navigate('Register')}
-        style={styles.button}
-      />
-      <Text style={{ color: 'white', fontSize: 20, marginTop: 20 }}>
+      >
+        <AntDesign name="adduser" size={24} color="white" /> {/* Cambiado el icono a "adduser" */}
+        <Text style={styles.buttonText}>Registrarse</Text>
+      </TouchableOpacity>
+      <Text style={styles.welcomeText}>
         {user ? `Bienvenido, ${user}` : 'Bienvenido, Invitado'}
       </Text>
     </View>
@@ -44,12 +45,29 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 150,
     backgroundColor: '#144fcc',
   },
-  separator: {
-    height: 30, // Espacio entre los botones
+  button: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+    height: 50,
+    marginBottom: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'transparent',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    marginLeft: 10,
+  },
+  welcomeText: {
+    color: 'white',
+    fontSize: 20,
+    marginTop: 20,
   },
 });

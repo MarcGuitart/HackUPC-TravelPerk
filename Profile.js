@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     menuItem: {
-        padding: 20,
+        padding: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
         width: '100%',
@@ -68,9 +68,10 @@ const styles = StyleSheet.create({
     logoutButton: {
         backgroundColor: 'red',
         paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingHorizontal: 14,
         borderRadius: 20,
         marginTop: 20,
+        width: '6.5% ',
     },
 });
 
