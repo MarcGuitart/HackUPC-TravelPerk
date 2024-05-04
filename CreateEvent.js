@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Platform, DatePickerIOS, DatePickerAndroid, TimePickerAndroid } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Platform } from 'react-native';
 import { supabase } from './src/supabase';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
@@ -10,18 +10,22 @@ export default function CreatePlanScreen({ navigation }) {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState('');
 
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+
   const handleCreatePlan = async () => {
     console.log('Plan name:', planName);
     console.log('Description:', description);
     console.log('Location:', location);
     console.log('Date:', date);
-    console.log('Time:', time);
+
+    
 
     try {
       const { data, error } = await supabase
         .from('PlanTable')
         .insert([
-          { planName: planName, description: description, location: location, date: date, time: time },
+          { planName: planName, description: description, location: location, date: date},
         ]);
 
       if (error) {
@@ -37,35 +41,23 @@ export default function CreatePlanScreen({ navigation }) {
     }
   };
 
-  const showDatePickerAndroid = async () => {
-    try {
-      const { action, year, month, day } = await DatePickerAndroid.open({
-        date: date,
-        mode: 'default',
-      });
-      if (action !== DatePickerAndroid.dismissedAction) {
-        const selectedDate = new Date(year, month, day);
-        setDate(selectedDate);
-      }
-    } catch ({ code, message }) {
-      console.warn('Cannot open date picker', message);
-    }
+  const showDatepicker = () => {
+    showMode('date');
   };
 
-  const showTimePickerAndroid = async () => {
-    try {
-      const { action, hour, minute } = await TimePickerAndroid.open({
-        hour: 0,
-        minute: 0,
-        is24Hour: true,
-      });
-      if (action !== TimePickerAndroid.dismissedAction) {
-        const selectedTime = `${hour}:${minute}`;
-        setTime(selectedTime);
-      }
-    } catch ({ code, message }) {
-      console.warn('Cannot open time picker', message);
-    }
+  const showTimepicker = () => {
+    showMode('time');
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setShow(false);
+    setDate(currentDate);
   };
 
   return (
@@ -94,7 +86,7 @@ export default function CreatePlanScreen({ navigation }) {
       />
 
       {Platform.OS === 'ios' ? (
-        <>
+        /*<>
           <DatePickerIOS
             style={styles.input}
             date={date}
@@ -107,6 +99,22 @@ export default function CreatePlanScreen({ navigation }) {
             onDateChange={newDate => setTime(newDate.toLocaleTimeString())}
             mode="time"
           />
+        </>*/
+        <>
+          <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode='date'
+          is24Hour={true}
+          onChange={onChange}
+        />
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode='time'
+          is24Hour={true}
+          onChange={onChange}
+        />
         </>
       ) : Platform.OS === 'android' ? (
         <>
@@ -121,7 +129,7 @@ export default function CreatePlanScreen({ navigation }) {
             style={styles.input}
           />
         </>
-      ) : (
+      ) : (/*
         <>
           <input
             type="date"
@@ -136,13 +144,31 @@ export default function CreatePlanScreen({ navigation }) {
             onChange={e => setTime(e.target.value)}
           />
         </>
-      )}
+      */
+      <>
+      <input
+  type="datetime-local"
+  style={styles.input}
+  value={date}
+  onChange={e => setDate(e.target.value)}
+/>
+</>
+    )}
 
       <Button
         title="Create plan"
         onPress={handleCreatePlan}
         style={styles.button}
       />
+      {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode={mode}
+          is24Hour={true}
+          onChange={onChange}
+        />
+      )}
     </View>
   );
 }
