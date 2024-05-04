@@ -22,16 +22,15 @@ export default function CreatePlanScreen({ navigation }) {
 
     //const creatorUserId = await supabase.auth.getUser();
     const { data: { user } } = await supabase.auth.getUser();
-    console.log('Creator user ID:', user.id);
-    console.log(creatorData)
     let { data: creatorData, error: creatorError } = await supabase
       .from('UserData')
-      .select('username')
-      .eq('id', creatorUserId)
+      .select('*')
 
-    
+    console.log('User:', user.id);
+    console.log('Creator:', creatorData);
+
      const participant = [];
-     participant.push(creatorData.username); 
+     participant.push(creatorData[0].username);
     
     
     try {
