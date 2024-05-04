@@ -29,22 +29,22 @@ export default function RegisterScreen() {
       <Text style={styles.title}>Log In</Text>
       
       <TextInput
-        style={styles.input}
+        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
         placeholder="Enter your username"
         value={username}
         onChangeText={text => setUsername(text)}
       />
       
       <TextInput
-        style={styles.input}
+        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
         placeholder="Enter your password"
         secureTextEntry={true}
         value={password}
         onChangeText={text => setPassword(text)}
       />
-      
+      <View style={styles.separator}></View>
       <Button
-        title="Register"
+        title="Log In"
         onPress={handleRegister}
         style={styles.button}
       />
@@ -64,15 +64,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 20,
   },
-  input: {
-    backgroundColor: 'white',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 10,
-    width: '80%',
-  },
   button: {
     marginTop: 20,
     width: '80%',
+  },
+  separator: {
+    height: 30, // Espacio entre los botones
   },
 });
