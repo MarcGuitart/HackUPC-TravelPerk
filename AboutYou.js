@@ -9,6 +9,7 @@ export default function PreferenceScreen({ navigation }) {
   const [age, setAge] = useState('');
 
   const handleSavePreferences = async () => {
+    
     try {
       // Insertar los datos en la tabla 'Users' de Supabase
       const { data, error } = await supabase.from('Users').insert([
@@ -27,6 +28,7 @@ export default function PreferenceScreen({ navigation }) {
     } catch (error) {
       console.error('Error al guardar las preferencias:', error.message);
     }
+    
   };
 
   return (

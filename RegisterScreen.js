@@ -9,23 +9,23 @@ export default function RegisterScreen({ navigation }) {
 
 
   const handleRegister = async () => {
-  navigation.navigate('Preferences');
-
-  try {
+    
+    try {
       if (password !== confirmPassword) {
         console.error('Las contraseñas no coinciden');
         return;
       }
-
+      
       const { user, error } = await supabase.auth.signUp({
         email,
         password,
       });
-
+      
       if (error) {
         console.error('Error al registrar usuario:', error.message);
         return;
       }
+      navigation.navigate('Preferences');
 
     // Aquí puedes implementar la lógica para registrar al usuario
     console.log('Email:', email);
