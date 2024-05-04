@@ -45,6 +45,7 @@ export default function App() {
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Preferences" component={AboutYou} />
         <Stack.Screen name="Feed" component={Feed} />
+        <Stack.Screen name="Event" component={CreateEvent} />
         </> )}
         
       </Stack.Navigator>

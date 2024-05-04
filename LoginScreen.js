@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { supabase } from './src/supabase';
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,7 +21,11 @@ export default function RegisterScreen() {
       alert(error.message);
     } else {
       //alert('Login successful!');
-      window.location.reload();
+      //window.location.reload();
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Feed' }],
+      });
     }
   };
 
