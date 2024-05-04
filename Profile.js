@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontFamily: 'sans-serif',
         color: 'white',
-        marginBottom: 20,
+        marginBottom: 70,
     },
     menuItem: {
         padding: 10,
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 14,
         borderRadius: 20,
         marginTop: 20,
-        width: '80%',
+        width: '11.5%',
     },
 });
 
