@@ -25,7 +25,7 @@ export default function HomeScreen({ navigation }) {
       <Text style={styles.welcomeText}>
         {user ? `Bienvenido, ${user}` : 'Bienvenido, Invitado'}
       </Text>
-      <StatusBar hidden />
+      <StatusBar translucentbackgroundColor = 'transparent' />
       <TouchableOpacity
         style={[styles.button, { backgroundColor: '#28A4D4' }]}
         onPress={() => navigation.navigate('LogIn')}

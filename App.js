@@ -33,22 +33,22 @@ export default function App() {
       <Stack.Navigator>
       {user!='Guest' ? (
         <>
-        <Stack.Screen name="Feed" component={Feed} />
-        <Stack.Screen name="Preferences" component={AboutYou} />
-        <Stack.Screen name="Event" component={CreateEvent} />
-        <Stack.Screen name="Search" component={Search} />
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Feed" component={Feed} options={{headerShown:false}}/>
+        <Stack.Screen name="Preferences" component={AboutYou} options={{headerShown:false}}/>
+        <Stack.Screen name="Event" component={CreateEvent} options={{headerShown:false}}/>
+        <Stack.Screen name="Search" component={Search} options={{headerShown:false}}/>
+        <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
         </>
       ) : (
         <>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="LogIn" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Preferences" component={AboutYou} />
-        <Stack.Screen name="Feed" component={Feed} />
-        <Stack.Screen name="Event" component={CreateEvent} />
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="LogIn" component={LoginScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown:false}}/>
+        <Stack.Screen name="Preferences" component={AboutYou} options={{headerShown:false}}/>
+        <Stack.Screen name="Feed" component={Feed} options={{headerShown:false}}/>
+        <Stack.Screen name="Event" component={CreateEvent} options={{headerShown:false}}/>
+        <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
+        <Stack.Screen name="Search" component={Search} options={{headerShown:false}}/>
 
         </> )}
         
