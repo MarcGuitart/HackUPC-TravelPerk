@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { supabase } from './src/supabase';
 
 export default function RegisterScreen() {
   const [username, setUsername] = useState('');
@@ -10,10 +11,11 @@ export default function RegisterScreen() {
     console.log('Username:', username);
     console.log('Password:', password);
     
-    const { user, error } = await supabase.auth.signIn({
-      email: email,
-      password: password
-    });
+    let { data, error } = await supabase.auth.signInWithPassword({
+      email: username,
+      password: password,
+    })
+
 
     if (error) {
       alert(error.message);
