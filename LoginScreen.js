@@ -28,34 +28,38 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome Back!</Text>
-      
-      <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
-        placeholder="Enter your email"
-        value={email}
-        onChangeText={text => setEmail(text)}
-      />
-      
-      <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
-        placeholder="Enter your password"
-        secureTextEntry={true}
-        value={password}
-        onChangeText={text => setPassword(text)}
-      />
-      <View style={styles.separator}></View>
-      <TouchableOpacity
-        style={[styles.button, { backgroundColor: '#28A4D4' }]}
-        onPress={handleLogin}
-      >
-        <AntDesign name="login" size={24} color="white" />
-        <Text style={styles.buttonText}>Iniciar sesión</Text>
-      </TouchableOpacity>
-    </View>
+        <View style={styles.container}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                <AntDesign name="arrowleft" size={24} color="white" />
+            </TouchableOpacity>
+            <Text style={styles.title}>Welcome Back!</Text>
+            
+            <TextInput
+                style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+                placeholder="Enter your email"
+                value={email}
+                onChangeText={text => setEmail(text)}
+            />
+            
+            <TextInput
+                style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+                placeholder="Enter your password"
+                secureTextEntry={true}
+                value={password}
+                onChangeText={text => setPassword(text)}
+            />
+            <View style={styles.separator}></View>
+            <TouchableOpacity
+                style={[styles.button, { backgroundColor: '#28A4D4' }]}
+                onPress={handleLogin}
+            >
+                <AntDesign name="login" size={24} color="white" />
+                <Text style={styles.buttonText}>Iniciar sesión</Text>
+            </TouchableOpacity>
+        </View>
     </ImageBackground>
-  );
+);
+
 }
 
 const styles = StyleSheet.create({
@@ -103,4 +107,11 @@ const styles = StyleSheet.create({
   separator: {
     height: 30, // Espacio entre los botones
   },
+  backButton: {
+    position: 'absolute',
+    top: 30,
+    left: 30,
+    zIndex: 1, // Para que el botón esté por encima de los otros elementos
+},
+
 });
