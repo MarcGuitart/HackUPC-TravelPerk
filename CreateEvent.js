@@ -167,7 +167,6 @@ export default function CreatePlanScreen({ navigation }) {
 />
 </>
     )}
-
       <Button
         title="Create plan"
         onPress={handleCreatePlan}
