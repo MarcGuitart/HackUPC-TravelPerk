@@ -1,20 +1,17 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, ImageBackground, StyleSheet } from 'react-native';
 
 const FeedScreen = ({ navigation }) => {
     const handleMessagesPress = () => {
         // Lógica para navegar a la pantalla de mensajes
-        navigation.navigate('Messages');
     };
 
     const handleMapPress = () => {
         // Lógica para navegar a la pantalla de mapa
-        navigation.navigate('Map');
     };
 
     const handleCreateEventPress = () => {
         // Lógica para navegar a la pantalla de creación de evento
-        navigation.navigate('CreateEvent');
     };
 
     return (
@@ -35,7 +32,8 @@ const FeedScreen = ({ navigation }) => {
             </View>
         </ImageBackground>
     );
-};
+    
+}
 
 const styles = StyleSheet.create({
     backgroundImage: {
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         marginTop: 20,
-    }
+    },
 });
 
 export default FeedScreen;
