@@ -53,10 +53,13 @@ export default function RegisterScreen({ navigation }) {
   return (
     <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
       <View style={styles.container}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <AntDesign name="arrowleft" size={24} color="white" />
+        </TouchableOpacity>
         <Text style={styles.title}>Create your account</Text>
         
         <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
           placeholder="Enter your email"
           keyboardType="email-address"
           value={email}
@@ -64,7 +67,7 @@ export default function RegisterScreen({ navigation }) {
         />
         
         <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
           placeholder="Enter your password"
           secureTextEntry={true}
           value={password}
@@ -72,7 +75,7 @@ export default function RegisterScreen({ navigation }) {
         />
         
         <TextInput
-        style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
           placeholder="Confirm your password"
           secureTextEntry={true}
           value={confirmPassword}
@@ -83,7 +86,7 @@ export default function RegisterScreen({ navigation }) {
           style={[styles.button, { backgroundColor: '#042f83' }]}
           onPress={handleRegister}
         >
-        <AntDesign name="adduser" size={24} color="white" />
+          <AntDesign name="adduser" size={24} color="white" /> {/* Cambiado el icono a "adduser" */}
           <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
       </View>
@@ -130,6 +133,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     marginLeft: 10,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 30,
+    left: 30,
+    zIndex: 1, // Para que el botón esté por encima de los otros elementos
   },
   backgroundImage: {
     flex: 1,
