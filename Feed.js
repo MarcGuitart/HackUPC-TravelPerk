@@ -5,6 +5,7 @@ import { supabase } from './src/supabase';
 
 const FeedScreen = ({ navigation }) => {
     const handleSearchPress = () => {
+        navigation.navigate('Search');
     };
 
     const handleAddEventPress = () => {
