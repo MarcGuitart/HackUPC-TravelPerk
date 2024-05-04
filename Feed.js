@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, ImageBackground, StyleSheet } from 'react-native';
+import { supabase } from './src/supabase';
 
 const FeedScreen = ({ navigation }) => {
     const handleMessagesPress = () => {
@@ -13,6 +14,14 @@ const FeedScreen = ({ navigation }) => {
     const handleCreateEventPress = () => {
         navigation.navigate('Event');
     };
+
+    const logOut = async () => {
+        let { error } = await supabase.auth.signOut()
+        if (error) console.log('Error logging out:', error.message)
+        else {
+            window.location.reload();
+        }
+      };
 
     return (
         <ImageBackground source={require('./assets/background.jpg')} style={styles.backgroundImage}>
@@ -28,6 +37,9 @@ const FeedScreen = ({ navigation }) => {
                 </View>
                 <View style={styles.buttonContainer}>
                     <Button title="Create Event" onPress={handleCreateEventPress} />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <Button title="Log out" onPress={logOut} />
                 </View>
             </View>
         </ImageBackground>
