@@ -8,10 +8,11 @@ const FeedScreen = ({ navigation }) => {
     };
 
     const handleAddEventPress = () => {
+        navigation.navigate('Event');
     };
 
     const handleProfilePress = () => {
-        navigation.navigate('Event');
+        
     };
 
     const logOut = async () => {
