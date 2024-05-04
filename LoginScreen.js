@@ -16,7 +16,6 @@ export default function RegisterScreen() {
       password: password,
     })
 
-
     if (error) {
       alert(error.message);
     } else {

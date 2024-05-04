@@ -5,6 +5,7 @@ import HomeScreen from './HomeScreen'; // Importa tus componentes de pantalla aq
 import RegisterScreen from './RegisterScreen';
 import LoginScreen from './LoginScreen';
 import AboutYou from './AboutYou';
+import FeedScreen from './FeedScreen';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ export default function App() {
         <Stack.Screen name="LogIn" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Preferences" component={AboutYou} />
+        <Stack.Screen name="Feed" component={FeedScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
