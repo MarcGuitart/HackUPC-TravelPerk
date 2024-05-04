@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Platform, DatePickerIOS, DatePickerAndroid, TimePickerAndroid } from 'react-native';
 import { supabase } from './src/supabase';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function CreatePlanScreen({ navigation }) {
   const [planName, setPlanName] = useState('');
@@ -111,12 +112,12 @@ export default function CreatePlanScreen({ navigation }) {
         <>
           <Button
             title="Select Date"
-            onPress={showDatePickerAndroid}
+            onPress={showDatepicker}
             style={styles.input}
           />
           <Button
             title="Select Time"
-            onPress={showTimePickerAndroid}
+            onPress={showTimepicker}
             style={styles.input}
           />
         </>
