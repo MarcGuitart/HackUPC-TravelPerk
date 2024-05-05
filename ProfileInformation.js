@@ -4,28 +4,23 @@ import { AntDesign } from '@expo/vector-icons';
 import { supabase } from './src/supabase';
 
 export default function RegisterScreen({ navigation }) {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState('');
 
   useEffect(() => {
     const fetchUserData = async () => {
 
-
-
-
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        let { data: creatorData, error: creatorError } = await supabase
-        .from('UserData')
-        .select('*')
-        .eq('id', user.id);
 
-        console.log(creatorData.dni);
+        let { data: creatorData, error: creatorError } = await supabase
+      .from('UserData')
+      .select('*')
+      
+      setUserData(creatorData);
         
         if (error || !user) {
           throw new Error('User not authenticated');
         }
 
-        setUserData(data);
       } catch (error) {
         console.error('Error fetching user data:', error.message);
       }
@@ -44,10 +39,10 @@ export default function RegisterScreen({ navigation }) {
 
         {/* Matriz de datos del usuario */}
         <View style={styles.userDataContainer}>
-          <Text style={styles.userDataText}>DNI: {userData?.dni}</Text>
-          <Text style={styles.userDataText}>Username: {userData?.username}</Text>
-          <Text style={styles.userDataText}>PhoneNumber: {userData?.phone}</Text>
-          <Text style={styles.userDataText}>Age: {userData?.age}</Text>
+          <Text style={styles.userDataText}>DNI: {userData[0]?.dni}</Text>
+          <Text style={styles.userDataText}>Username: {userData[0]?.username}</Text>
+          <Text style={styles.userDataText}>PhoneNumber: {userData[0]?.phone}</Text>
+          <Text style={styles.userDataText}>Age: {userData[0]?.age}</Text>
           {/* Agrega más campos de información según tu modelo de datos */}
         </View>
       </View>
