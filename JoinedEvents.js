@@ -4,26 +4,27 @@ import { AntDesign } from '@expo/vector-icons';
 import { supabase } from './src/supabase';
 
 export default function RegisterScreen({ navigation }) {
-  const [userData, setUserData] = useState('');
+  const [userPlans, setUserPlans] = useState([]);
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    const fetchUserPlans = async () => {
       try {
-        let { data: creatorData, error: creatorError } = await supabase
-          .from('UserData')
-          .select('*');
+        const { data: plans, error: plansError } = await supabase
+          .from('UserPlans')
+          .select('planName')
+          .eq('userId', userData.id);
 
-        setUserData(creatorData);
-
-        if (creatorError) {
-          throw new Error('Error fetching user data');
+        if (plansError) {
+          throw new Error('Error fetching user plans');
         }
+
+        setUserPlans(plans || []);
       } catch (error) {
-        console.error('Error fetching user data:', error.message);
+        console.error('Error fetching user plans:', error.message);
       }
     };
 
-    fetchUserData();
+    fetchUserPlans();
   }, []);
 
   return (
@@ -32,27 +33,24 @@ export default function RegisterScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <AntDesign name="arrowleft" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.title}>User Information</Text>
-
-        {/* Matriz de datos del usuario */}
-        <View style={styles.userDataContainer}>
-          <View style={styles.userDataItem}>
-            <Text style={[styles.userDataLabel, styles.boldText]}>DNI:</Text>
-            <Text style={styles.userDataText}>{userData[0]?.dni}</Text>
-          </View>
-          <View style={styles.userDataItem}>
-            <Text style={[styles.userDataLabel, styles.boldText]}>Username:</Text>
-            <Text style={styles.userDataText}>{userData[0]?.username}</Text>
-          </View>
-          <View style={styles.userDataItem}>
-            <Text style={[styles.userDataLabel, styles.boldText]}>Phone Number:</Text>
-            <Text style={styles.userDataText}>{userData[0]?.phone}</Text>
-          </View>
-          <View style={styles.userDataItem}>
-            <Text style={[styles.userDataLabel, styles.boldText]}>Age:</Text>
-            <Text style={styles.userDataText}>{userData[0]?.age}</Text>
-          </View>
-          {/* Agrega más campos de información según tu modelo de datos */}
+        <Text style={styles.title}>Events you're attending</Text>
+        <View style={styles.plansContainer}>
+          {userPlans.length > 0 ? (
+            userPlans.map((plan, index) => (
+              <Text key={index} style={styles.planText}>{plan.planName}</Text>
+            ))
+          ) : (
+            <View>
+              <Text style={[styles.noPlansText, styles.boldText]}>
+                You haven't joined any event yet...
+              </Text>
+              <TouchableOpacity
+                style={styles.createEventButton}
+                onPress={() => navigation.navigate('Feed')}>
+                <Text style={styles.createEventButtonText}>Explore Events</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </View>
     </ImageBackground>
@@ -82,29 +80,31 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
   },
-  userDataContainer: {
+  plansContainer: {
     marginTop: 20,
-    marginBottom:20,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    padding: 20,
-    borderRadius: 10,
-    width: '80%', // Hace que el contenedor sea más ancho
+    alignItems: 'center',
   },
-  userDataItem: {
-    marginBottom: 15,
-    flexDirection: 'row', // Alinea los elementos en una fila
-    alignItems: 'center', // Centra verticalmente los elementos
-  },
-  userDataLabel: {
-    color: 'white',
-    fontSize: 18,
-  },
-  userDataText: {
+  planText: {
     color: 'white',
     fontSize: 16,
+    marginBottom: 10,
+  },
+  noPlansText: {
+    color: 'white',
+    fontSize: 16,
+    marginBottom: 10,
   },
   boldText: {
     fontWeight: 'bold',
-    marginRight: 5, // Agrega espacio entre el título y la respuesta
+  },
+  createEventButton: {
+    backgroundColor: '#28A4D4',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  createEventButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
