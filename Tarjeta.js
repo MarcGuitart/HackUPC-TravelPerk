@@ -13,13 +13,13 @@ const Tarjeta = ({ nombre, descripcion, ciudad, fechaHora, participantes }) => {
       </View>
       <View style={styles.infoContainer}>
         <Feather name="calendar" size={16} color="#888" style={styles.icono} />
-        <Text style={styles.texto}>Fecha y Hora: {fechaHora}</Text>
+        <Text style={styles.texto}>Fecha y Hora: {fechaHora.replace('T', ' ').slice(0, -3) + 'h'}</Text>
       </View>
       <View style={styles.infoContainer}>
         <Feather name="users" size={16} color="#888" style={styles.icono} />
         <Text style={styles.texto}>
-      Participantes: {Array.isArray(participantes) ? participantes.join(', ') : ''}
-      </Text>
+          Participantes: {Array.isArray(participantes) ? participantes.join(', ') : ''}
+        </Text>
       </View>
     </View>
   );
