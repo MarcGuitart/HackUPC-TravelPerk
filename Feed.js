@@ -1,5 +1,5 @@
     import React, { useState, useEffect } from 'react';
-    import { View, Text, Button, ImageBackground, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+    import { View, Text, Button, ImageBackground, StyleSheet, TouchableOpacity, ScrollView, Platform } from 'react-native';
     import { AntDesign } from '@expo/vector-icons'; // Importamos los íconos de Ant Design
     import { supabase } from './src/supabase';
     import Tarjeta from './Tarjeta';
@@ -75,7 +75,7 @@
 
         return (
             <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
-                <ScrollView contentContainerStyle={styles.scrollView}>
+                <ScrollView contentContainerStyle={[styles.scrollView, Platform.OS === 'web' && styles.webScrollView]}>
                     <Text style={{ fontSize: 32, fontWeight: 'bold', color: 'white', marginTop: 25, marginBottom:25 }}>Discover and meet people joining unique plans in your area:</Text>
                     <View style={styles.container}>
                         {plans.map((plan, index) => (
@@ -153,6 +153,10 @@
         },
         scrollView: {
             //height: 400, // Establecer una altura fija
+            alignItems: 'center', // Centrar los elementos horizontalmente
+        },
+        webScrollView: {
+            height: 400, // Establecer una altura fija
             alignItems: 'center', // Centrar los elementos horizontalmente
         },
         cardContainer: {
