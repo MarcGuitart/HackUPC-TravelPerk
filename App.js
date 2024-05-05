@@ -9,6 +9,7 @@ import Feed from './Feed';
 import CreateEvent from './CreateEvent';
 import Search from './Search';
 import Profile from './Profile';
+import ProfileInformation from './ProfileInformation';
 import { supabase } from './src/supabase';
 
 
@@ -38,6 +39,8 @@ export default function App() {
         <Stack.Screen name="Event" component={CreateEvent} options={{headerShown:false}}/>
         <Stack.Screen name="Search" component={Search} options={{headerShown:false}}/>
         <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
+        <Stack.Screen name="ProfileInformation" component={ProfileInformation} options={{headerShown:false}}/>
+
         </>
       ) : (
         <>
