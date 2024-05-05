@@ -4,58 +4,56 @@ import { AntDesign } from '@expo/vector-icons';
 import { supabase } from './src/supabase';
 
 export default function RegisterScreen({ navigation }) {
-  const [userData, setUserData] = useState('');
+  const [userEvents, setUserEvents] = useState([]);
 
   useEffect(() => {
-    const fetchUserData = async () => {
+
+    const fetchUserEvents = async () => {
       try {
-        let { data: creatorData, error: creatorError } = await supabase
-          .from('UserData')
-          .select('*');
+        const { data: events, error: eventsError } = await supabase
+          .from('PlanTable')
+          .select('planName')
+          .eq('creatorId', userData.id);
 
-        setUserData(creatorData);
-
-        if (creatorError) {
-          throw new Error('Error fetching user data');
+        if (eventsError) {
+          throw new Error('Error fetching user events');
         }
+
+        setUserEvents(events || []);
       } catch (error) {
-        console.error('Error fetching user data:', error.message);
+        console.error('Error fetching user events:', error.message);
       }
     };
-
-    fetchUserData();
+    fetchUserEvents();
   }, []);
 
   return (
     <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-          <AntDesign name="arrowleft" size={24} color="white" />
-        </TouchableOpacity>
-        <Text style={styles.title}>User Information</Text>
-
-        {/* Matriz de datos del usuario */}
-        <View style={styles.userDataContainer}>
-          <View style={styles.userDataItem}>
-            <Text style={[styles.userDataLabel, styles.boldText]}>DNI:</Text>
-            <Text style={styles.userDataText}>{userData[0]?.dni}</Text>
-          </View>
-          <View style={styles.userDataItem}>
-            <Text style={[styles.userDataLabel, styles.boldText]}>Username:</Text>
-            <Text style={styles.userDataText}>{userData[0]?.username}</Text>
-          </View>
-          <View style={styles.userDataItem}>
-            <Text style={[styles.userDataLabel, styles.boldText]}>Phone Number:</Text>
-            <Text style={styles.userDataText}>{userData[0]?.phone}</Text>
-          </View>
-          <View style={styles.userDataItem}>
-            <Text style={[styles.userDataLabel, styles.boldText]}>Age:</Text>
-            <Text style={styles.userDataText}>{userData[0]?.age}</Text>
-          </View>
-          {/* Agrega más campos de información según tu modelo de datos */}
+  <View style={styles.container}>
+    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+      <AntDesign name="arrowleft" size={24} color="white" />
+    </TouchableOpacity>
+    <Text style={styles.title}>Events created by you</Text>
+    <View style={styles.eventsContainer}>
+      {userEvents.length > 0 ? (
+        userEvents.map((event, index) => (
+          <Text key={index} style={styles.userDataText}>{event.planName}</Text>
+        ))
+      ) : (
+        <View>
+          <Text style={[styles.userDataText, styles.boldText]}>
+            At the moment, You haven't created any event...
+          </Text>
+          <TouchableOpacity
+            style={styles.createEventButton}
+            onPress={() => navigation.navigate('Events')}
+            <Text style={styles.createEventButtonText}>Create Event</Text>
+          </TouchableOpacity>
         </View>
-      </View>
-    </ImageBackground>
+      )}
+    </View>
+  </View>
+</ImageBackground>
   );
 }
 
@@ -88,12 +86,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     padding: 20,
     borderRadius: 10,
-    width: '80%', // Hace que el contenedor sea más ancho
+    width: '80%',
   },
   userDataItem: {
     marginBottom: 15,
-    flexDirection: 'row', // Alinea los elementos en una fila
-    alignItems: 'center', // Centra verticalmente los elementos
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   userDataLabel: {
     color: 'white',
@@ -105,6 +103,9 @@ const styles = StyleSheet.create({
   },
   boldText: {
     fontWeight: 'bold',
-    marginRight: 5, // Agrega espacio entre el título y la respuesta
+    marginRight: 5,
+  },
+  eventsContainer: {
+    marginTop: 20,
   },
 });
