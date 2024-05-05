@@ -30,14 +30,14 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate('LogIn')}
       >
         <AntDesign name="login" size={24} color="white" />
-        <Text style={styles.buttonText}>Iniciar sesión</Text>
+        <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, { backgroundColor: '#042F83' }]}
         onPress={() => navigation.navigate('Register')}
       >
         <AntDesign name="adduser" size={24} color="white" />
-        <Text style={styles.buttonText}>Registrarse</Text>
+        <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
     </View>
     </ImageBackground>

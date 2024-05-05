@@ -54,7 +54,7 @@ export default function RegisterScreen({ navigation }) {
                 onPress={handleLogin}
             >
                 <AntDesign name="login" size={24} color="white" />
-                <Text style={styles.buttonText}>Iniciar sesión</Text>
+                <Text style={styles.buttonText}>Log In</Text>
             </TouchableOpacity>
         </View>
     </ImageBackground>
