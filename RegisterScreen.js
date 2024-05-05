@@ -94,7 +94,7 @@ export default function RegisterScreen({ navigation }) {
           onPress={handleRegister}
         >
           <AntDesign name="adduser" size={24} color="white" />
-          <Text style={styles.buttonText}>Register</Text>
+          <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
