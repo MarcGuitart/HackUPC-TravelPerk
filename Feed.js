@@ -137,7 +137,7 @@
         return (
             <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
                 <ScrollView contentContainerStyle={[styles.scrollView, Platform.OS === 'web' && styles.webScrollView]}>
-                    <Text style={{ fontSize: 32, fontWeight: 'bold', color: 'white', marginTop: 25, marginBottom:25 }}>Discover and meet people joining unique plans in your area:</Text>
+                    <Text style={{ fontSize: 32, fontWeight: 'bold', color: 'white', marginTop: 25, marginBottom:25 }}>Discover and meet people joining unique plans in your area</Text>
                     <View style={styles.container}>
                         {plans.map((plan, index) => (
                             <View style={styles.cardContainer} key={index}>
