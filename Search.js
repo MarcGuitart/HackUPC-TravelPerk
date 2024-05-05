@@ -34,7 +34,7 @@ const SearchScreen = ({ navigation }) => { // Asegúrate de recibir 'navigation'
                 <View style={styles.searchContainer}>
                     <TextInput
                         style={styles.input}
-                        placeholder="Buscar..."
+                        placeholder="Search..."
                         value={searchQuery}
                         onChangeText={setSearchQuery}
                     />
