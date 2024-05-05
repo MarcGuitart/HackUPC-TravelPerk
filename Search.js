@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ImageBackground, FlatList, StyleSheet } from 'react-native';
-import { AntDesign } from '@expo/vector-icons'; // Importamos los íconos de Ant Design
+import { AntDesign } from '@expo/vector-icons';
 
-const SearchScreen = ({ navigation }) => { // Asegúrate de recibir 'navigation' como prop
-
+const SearchScreen = ({ navigation }) => { 
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
-    // Función para simular la búsqueda
     const handleSearch = () => {
-        // Aquí puedes implementar la lógica de búsqueda utilizando la query searchQuery
-        // Por ahora, simplemente simulo algunos resultados aleatorios
         const results = Array.from({ length: 5 }, (_, i) => ({
             id: i.toString(),
             name: `Resultado ${i + 1}`,
@@ -18,7 +14,6 @@ const SearchScreen = ({ navigation }) => { // Asegúrate de recibir 'navigation'
         setSearchResults(results);
     };
 
-    // Función para renderizar cada elemento de la lista de resultados
     const renderItem = ({ item }) => (
         <TouchableOpacity style={styles.resultItem} onPress={() => console.log(item.name)}>
             <Text>{item.name}</Text>
@@ -64,14 +59,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 20,
-        marginTop: 70, // Mueve la barra de búsqueda más abajo de la flecha de retroceso
+        marginTop: 70,
     },
     input: {
         flex: 1,
         height: 40,
         borderWidth: 1,
-        borderColor: 'white', // Cambia el color del borde a blanco
-        backgroundColor: 'white', // Cambia el color de fondo a blanco
+        borderColor: 'white',
+        backgroundColor: 'white', 
         borderRadius: 20,
         paddingHorizontal: 15,
     },
@@ -98,7 +93,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 30,
         left: 30,
-        zIndex: 1, // Para que el botón esté por encima de los otros elementos
+        zIndex: 1,
     },
     backgroundImage: {
         flex: 1,
