@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { supabase } from './src/supabase';
 
 export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState('');
@@ -29,6 +30,11 @@ export default function RegisterScreen({ navigation }) {
         throw new Error('Passwords do not match');
       }
 
+      const { user, error } = await supabase.auth.signUp({
+        email,
+        password,
+      });
+
       // Implementar lógica para registrar al usuario
       console.log('Email:', email);
       console.log('Password:', password);
@@ -37,7 +43,8 @@ export default function RegisterScreen({ navigation }) {
       // Aquí puedes agregar la lógica para registrar al usuario en la base de datos
 
       // Navegar a la siguiente pantalla después del registro
-      navigation.navigate('Preferences');
+      if (!error) navigation.navigate('Preferences');
+      else throw new Error(error.message);
     } catch (error) {
       alert(error.message);
       console.error('Error registering user:', error.message);
