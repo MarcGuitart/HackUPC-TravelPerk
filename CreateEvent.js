@@ -21,7 +21,6 @@ export default function CreatePlanScreen({ navigation }) {
     console.log('Date:', date);
     console.log('Participant:', participant);
 
-    //const creatorUserId = await supabase.auth.getUser();
     const { data: { user } } = await supabase.auth.getUser();
     let { data: creatorData, error: creatorError } = await supabase
       .from('UserData')
@@ -79,7 +78,7 @@ export default function CreatePlanScreen({ navigation }) {
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <AntDesign name="arrowleft" size={24} color="white" />
       </TouchableOpacity>
-      <Text style={styles.title}>Create your plan</Text>
+      <Text style={styles.title}>Create an event</Text>
 
       <TextInput
         style={styles.input}
@@ -103,20 +102,6 @@ export default function CreatePlanScreen({ navigation }) {
       />
 
       {Platform.OS === 'ios' ? (
-        /*<>
-          <DatePickerIOS
-            style={styles.input}
-            date={date}
-            onDateChange={newDate => setDate(newDate)}
-            mode="date"
-          />
-          <DatePickerIOS
-            style={styles.input}
-            date={date}
-            onDateChange={newDate => setTime(newDate.toLocaleTimeString())}
-            mode="time"
-          />
-        </>*/
         <>
           <DateTimePicker
           testID="dateTimePicker"
@@ -149,22 +134,7 @@ export default function CreatePlanScreen({ navigation }) {
                 <Text style={styles.buttonText}>Select Time</Text>
             </TouchableOpacity>
         </>
-      ) : (/*
-        <>
-          <input
-            type="date"
-            style={styles.input}
-            value={date.toISOString().split('T')[0]}
-            onChange={e => setDate(new Date(e.target.value))}
-          />
-          <input
-            type="time"
-            style={styles.input}
-            value={time}
-            onChange={e => setTime(e.target.value)}
-          />
-        </>
-      */
+      ) : (
       <>
       <input
   type="datetime-local"
@@ -210,7 +180,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   title: {
-    fontFamily: 'nombre-de-la-fuente', // Reemplaza 'nombre-de-la-fuente' con el nombre de la fuente deseada
     fontSize: 35,
     fontWeight: 'bold',
     fontFamily: 'sans-serif',
@@ -234,7 +203,7 @@ button: {
   alignItems: 'center',
   width: '45%',
   height: 50,
-  marginTop: 20, // Separación de las cajas de texto
+  marginTop: 20,
   borderRadius: 10,
   backgroundColor: '#28A4D4',
 },
@@ -252,6 +221,6 @@ button: {
     position: 'absolute',
     top: 30,
     left: 30,
-    zIndex: 1, // Para que el botón esté por encima de los otros elementos
+    zIndex: 1,
   },
 });

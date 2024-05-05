@@ -10,22 +10,18 @@ export default function PreferenceScreen({ navigation }) {
 
   const handleSavePreferences = async () => {
     try {
-      // Validar que todos los campos estén completos
       if (!dni || !username || !phoneNumber || !age) {
         throw new Error('Please fill in all fields');
       }
 
-      // Validar el formato del DNI (8 números)
       if (!/^\d{8}$/.test(dni)) {
         throw new Error('Please enter a valid DNI (8 digits)');
       }
 
-      // Validar el formato del número de teléfono (9 números)
       if (!/^\d{9}$/.test(phoneNumber)) {
         throw new Error('Please enter a valid phone number (9 digits)');
       }
 
-      // Validar que la edad sea un número entre 5 y 120
       const ageNumber = parseInt(age);
       if (isNaN(ageNumber) || ageNumber < 5 || ageNumber > 120) {
         throw new Error('Please enter a valid age (between 5 and 120)');
@@ -137,7 +133,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 10,
     width: '45%',
-    color: '#000', // Asegura que el texto dentro de la caja sea negro
+    color: '#000',
   },
   backgroundImage: {
     flex: 1,
@@ -149,7 +145,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '45%',
     height: 50,
-    marginTop: 20, // Separación de las cajas de texto
+    marginTop: 20,
     borderRadius: 10,
     backgroundColor: '#042f83',
   },
