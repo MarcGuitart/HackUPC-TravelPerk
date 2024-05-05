@@ -152,7 +152,7 @@
             alignItems: 'center',
         },
         scrollView: {
-            height: 400, // Establecer una altura fija
+            //height: 400, // Establecer una altura fija
             alignItems: 'center', // Centrar los elementos horizontalmente
         },
         cardContainer: {
