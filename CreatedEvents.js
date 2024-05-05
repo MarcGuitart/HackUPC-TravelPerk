@@ -33,7 +33,7 @@ export default function RegisterScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <AntDesign name="arrowleft" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.title}>Events you're attending</Text>
+        <Text style={styles.title}>Events you've created</Text>
         <View style={styles.plansContainer}>
           {userPlans.length > 0 ? (
             userPlans.map((plan, index) => (
@@ -98,10 +98,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   createEventButton: {
-    backgroundColor: '#28A4D4',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '50%',
+    height: 50,
+    marginBottom: 20,
+    marginLeft: 70,
+    marginTop: 20,
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'transparent',
+    backgroundColor: '#0D275A',
   },
   createEventButtonText: {
     color: 'white',
