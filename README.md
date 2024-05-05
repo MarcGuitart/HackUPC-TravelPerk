@@ -25,10 +25,12 @@ TravelPerk inspired our small project. They are offer a travel management system
 - Create & join plans
 - Filter based on best interest
 
+Further steps would let the user share his interests, and also would let event organizers create private groups so that his members can plan more activities. We also thought that AI could play an important role in identifying shared interests among groups of people and come up with new plans.
+
 
 ## Technology used
 
-As any modern platform we valued: crossplatform
+We took a modern approach and valued crossplatform, 
 
 * Expo & React Native for the frontend
 
@@ -59,12 +61,6 @@ A fer
   ```
 4. Run on Android and iOS using Expo Go app.
 
-### Prerequisites
-
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
 
 <!-- LICENSE -->
 ## License
