@@ -70,7 +70,7 @@ image: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '30%',
+    width: '50%',
     height: 50,
     marginBottom: 20,
     borderRadius: 10,
