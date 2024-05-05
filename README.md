@@ -80,10 +80,15 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
+<p align="center">
 Marc Guitart
+·
 Guillermo Navas
+·
 Guillem Angulo
+·
 Àngel Masip
+</p>
 
 Project Link: [https://github.com/MarcGuitart/HackUPC-TravelPerk](https://github.com/MarcGuitart/HackUPC-TravelPerk)
 
