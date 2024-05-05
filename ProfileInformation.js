@@ -8,19 +8,16 @@ export default function RegisterScreen({ navigation }) {
 
   useEffect(() => {
     const fetchUserData = async () => {
-
       try {
-
         let { data: creatorData, error: creatorError } = await supabase
-      .from('UserData')
-      .select('*')
-      
-      setUserData(creatorData);
-        
-        if (error || !user) {
-          throw new Error('User not authenticated');
-        }
+          .from('UserData')
+          .select('*');
 
+        setUserData(creatorData);
+
+        if (creatorError) {
+          throw new Error('Error fetching user data');
+        }
       } catch (error) {
         console.error('Error fetching user data:', error.message);
       }
@@ -39,10 +36,22 @@ export default function RegisterScreen({ navigation }) {
 
         {/* Matriz de datos del usuario */}
         <View style={styles.userDataContainer}>
-          <Text style={styles.userDataText}>DNI: {userData[0]?.dni}</Text>
-          <Text style={styles.userDataText}>Username: {userData[0]?.username}</Text>
-          <Text style={styles.userDataText}>PhoneNumber: {userData[0]?.phone}</Text>
-          <Text style={styles.userDataText}>Age: {userData[0]?.age}</Text>
+          <View style={styles.userDataItem}>
+            <Text style={[styles.userDataLabel, styles.boldText]}>DNI:</Text>
+            <Text style={styles.userDataText}>{userData[0]?.dni}</Text>
+          </View>
+          <View style={styles.userDataItem}>
+            <Text style={[styles.userDataLabel, styles.boldText]}>Username:</Text>
+            <Text style={styles.userDataText}>{userData[0]?.username}</Text>
+          </View>
+          <View style={styles.userDataItem}>
+            <Text style={[styles.userDataLabel, styles.boldText]}>Phone Number:</Text>
+            <Text style={styles.userDataText}>{userData[0]?.phone}</Text>
+          </View>
+          <View style={styles.userDataItem}>
+            <Text style={[styles.userDataLabel, styles.boldText]}>Age:</Text>
+            <Text style={styles.userDataText}>{userData[0]?.age}</Text>
+          </View>
           {/* Agrega más campos de información según tu modelo de datos */}
         </View>
       </View>
@@ -57,18 +66,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontFamily: 'nombre-de-la-fuente', // Reemplaza 'nombre-de-la-fuente' con el nombre de la fuente deseada
     fontSize: 35,
     fontWeight: 'bold',
-    fontFamily: 'sans-serif',
     color: 'white',
-    marginBottom: 50,
+    marginBottom: 30,
   },
   backButton: {
     position: 'absolute',
     top: 30,
     left: 30,
-    zIndex: 1, // Para que el botón esté por encima de los otros elementos
+    zIndex: 1,
   },
   backgroundImage: {
     flex: 1,
@@ -77,14 +84,27 @@ const styles = StyleSheet.create({
   },
   userDataContainer: {
     marginTop: 20,
-    borderWidth: 1,
-    borderColor: 'white',
-    padding: 10,
-    borderRadius: 5,
+    marginBottom:20,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    padding: 20,
+    borderRadius: 10,
+    width: '80%', // Hace que el contenedor sea más ancho
+  },
+  userDataItem: {
+    marginBottom: 15,
+    flexDirection: 'row', // Alinea los elementos en una fila
+    alignItems: 'center', // Centra verticalmente los elementos
+  },
+  userDataLabel: {
+    color: 'white',
+    fontSize: 18,
   },
   userDataText: {
     color: 'white',
     fontSize: 16,
-    marginBottom: 5,
+  },
+  boldText: {
+    fontWeight: 'bold',
+    marginRight: 5, // Agrega espacio entre el título y la respuesta
   },
 });
