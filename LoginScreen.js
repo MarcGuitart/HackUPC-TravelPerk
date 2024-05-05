@@ -8,7 +8,6 @@ export default function RegisterScreen({ navigation }) {
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    // Aquí puedes implementar la lógica para registrar al usuario
     console.log('Email:', email);
     console.log('Password:', password);
     let { data, error } = await supabase.auth.signInWithPassword({
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontFamily: 'nombre-de-la-fuente', // Reemplaza 'nombre-de-la-fuente' con el nombre de la fuente deseada
+    fontFamily: 'nombre-de-la-fuente',
     fontSize: 35,
     fontWeight: 'bold',
     fontFamily: 'sans-serif',
@@ -105,13 +104,13 @@ const styles = StyleSheet.create({
     justifyContent: "center"
 },
   separator: {
-    height: 30, // Espacio entre los botones
+    height: 30,
   },
   backButton: {
     position: 'absolute',
     top: 30,
     left: 30,
-    zIndex: 1, // Para que el botón esté por encima de los otros elementos
+    zIndex: 1,
 },
 
 });

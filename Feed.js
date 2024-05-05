@@ -1,6 +1,6 @@
     import React, { useState, useEffect } from 'react';
     import { View, Text, Button, ImageBackground, StyleSheet, TouchableOpacity, ScrollView, Platform } from 'react-native';
-    import { AntDesign } from '@expo/vector-icons'; // Importamos los íconos de Ant Design
+    import { AntDesign } from '@expo/vector-icons';
     import { supabase } from './src/supabase';
     import Tarjeta from './Tarjeta';
 
@@ -21,7 +21,7 @@
             fetchPlans();
         }, []);
 
-        // Actualitzar les dades quan es torni a la pantalla
+        //Actualitzar les dades quan es torni a la pantalla
         useEffect(() => {
         if (route.params?.refresh) {
             fetchPlans();
@@ -42,7 +42,6 @@
 
         const handleJoinEvent = async (planId) => {
 
-            // a planId tinc el planName del plan que t unes
             const { data: planData, error: planError } = await supabase
             .from('PlanTable')
             .select('*')
@@ -65,12 +64,9 @@
                 return;
             }
             
-            //console.log(creatorData[0].username);
 
-            //console.log(planData.participant);
             const updatedParticipants = [...planData.participant, creatorData[0].username];
 
-            //console.log(updatedParticipants);
 
             const {data : updatePlanData, error:updateError} = await supabase
             .from ('PlanTable')
@@ -83,7 +79,7 @@
 
         const handleLeaveEvent = async (planId) => {
             try {
-                // Obtener los datos del plan al que el usuario se quiere unir
+                //Obtener los datos del plan al que el usuario se quiere unir
                 const { data: planData, error: planError } = await supabase
                     .from('PlanTable')
                     .select('*')
@@ -94,7 +90,7 @@
                     throw new Error(planError.message);
                 }
         
-                // Obtener los datos del usuario actual
+                //Obtener los datos del usuario actual
                 const { data: { user } } = await supabase.auth.getUser();
                 const { data: userData, error: userError } = await supabase
                     .from('UserData')
@@ -106,7 +102,6 @@
                     throw new Error(userError.message);
                 }
         
-                // Verificar si el usuario ya se ha unido al plan
                 const userAlreadyJoined = planData.participant.includes(userData.username);
         
                 if (!userAlreadyJoined) {
@@ -114,10 +109,10 @@
                     return;
                 }
         
-                // Filtrar la lista de participantes para excluir al usuario actual
+                //Filtrar la lista de participantes para excluir al usuario actual
                 const updatedParticipants = planData.participant.filter(participant => participant !== userData.username);
         
-                // Actualizar los participantes en la base de datos
+                //Actualizar los participantes en la base de datos
                 const { data: updatedPlanData, error: updateError } = await supabase
                     .from('PlanTable')
                     .update({ participant: updatedParticipants })
@@ -187,7 +182,7 @@
     const styles = StyleSheet.create({
         container: {
             flex: 1,
-            alignItems: 'center', // Centrar los elementos horizontalmente
+            alignItems: 'center',
         },
         backgroundImage: {
             flex: 1,
@@ -218,12 +213,11 @@
             alignItems: 'center',
         },
         scrollView: {
-            //height: 400, // Establecer una altura fija
-            alignItems: 'center', // Centrar los elementos horizontalmente
+            alignItems: 'center',
         },
         webScrollView: {
-            height: 400, // Establecer una altura fija
-            alignItems: 'center', // Centrar los elementos horizontalmente
+            height: 400,
+            alignItems: 'center',
         },
         cardContainer: {
             

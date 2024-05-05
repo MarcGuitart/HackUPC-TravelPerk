@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     title: {
-        fontFamily: 'nombre-de-la-fuente', // Reemplaza 'nombre-de-la-fuente' con el nombre de la fuente deseada
+        fontFamily: 'nombre-de-la-fuente',
     fontSize: 35,
     fontWeight: 'bold',
     fontFamily: 'sans-serif',
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 30,
         left: 30,
-        zIndex: 1, // Para que el botón esté por encima de los otros elementos
+        zIndex: 1,
     },
 });
 
