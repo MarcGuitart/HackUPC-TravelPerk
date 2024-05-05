@@ -59,7 +59,7 @@ export default function RegisterScreen({ navigation }) {
         <Text style={styles.title}>Create your account</Text>
         
         <TextInput
-          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10, width: '45%' }}
           placeholder="Enter your email"
           keyboardType="email-address"
           value={email}
@@ -67,7 +67,7 @@ export default function RegisterScreen({ navigation }) {
         />
         
         <TextInput
-          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10, width: '45%' }}
           placeholder="Enter your password"
           secureTextEntry={true}
           value={password}
@@ -75,7 +75,7 @@ export default function RegisterScreen({ navigation }) {
         />
         
         <TextInput
-          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10 }}
+          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10, width: '45%' }}
           placeholder="Confirm your password"
           secureTextEntry={true}
           value={confirmPassword}
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '14%',
+    width: '45%',
     height: 50,
     marginBottom: 20,
     borderRadius: 10,
