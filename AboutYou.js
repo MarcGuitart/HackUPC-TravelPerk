@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     height: 50,
     marginTop: 20, // Separación de las cajas de texto
     borderRadius: 10,
-    backgroundColor: '##0D275A',
+    backgroundColor: '#042f83',
   },
   buttonText: {
     color: 'white',
