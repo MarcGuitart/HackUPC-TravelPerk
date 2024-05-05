@@ -25,23 +25,35 @@ const ProfileScreen = ({ navigation }) => {
                 <Text style={styles.title}>Profile</Text>
     
                 {/* Información del perfil */}
-                <TouchableOpacity style={[styles.menuItem, styles.largeText]}>
+                <TouchableOpacity
+                    style={[styles.menuItem, styles.largeText]}
+                    onPress={() => {/* Acción para información del perfil */}}
+                >
                     <Text style={[styles.menuItemText, styles.largeText]}>Profile Information</Text>
                 </TouchableOpacity>
     
                 {/* Eventos creados */}
-                <TouchableOpacity style={[styles.menuItem, styles.largeText]}>
+                <TouchableOpacity
+                    style={[styles.menuItem, styles.largeText]}
+                    onPress={() => {/* Acción para eventos creados */}}
+                >
                     <Text style={[styles.menuItemText, styles.largeText]}>Created Events</Text>
                 </TouchableOpacity>
     
                 {/* Participaciones */}
-                <TouchableOpacity style={[styles.menuItem, styles.largeText]}>
-                    <Text style={[styles.menuItemText, styles.largeText]}>Events Joined</Text>
+                <TouchableOpacity
+                    style={[styles.menuItem, styles.largeText]}
+                    onPress={() => {/* Acción para eventos en los que participa */}}
+                >
+                    <Text style={[styles.menuItemText, styles.largeText]}>Joined Events</Text>
                 </TouchableOpacity>
     
                 {/* Log out */}
-                <TouchableOpacity style={[styles.menuItem, styles.logoutButton]} onPress={handleLogout}>
-                    <Text style={{ color: 'white', fontSize: 14 }}>Log Out</Text>
+                <TouchableOpacity
+                    style={[styles.menuItem, styles.logoutButton]}
+                    onPress={handleLogout}
+                >
+                    <Text style={{ color: 'white', fontSize: 16 }}>Log Out</Text>
                 </TouchableOpacity>
             </View>
         </ImageBackground>
@@ -62,18 +74,23 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'nombre-de-la-fuente', // Reemplaza 'nombre-de-la-fuente' con el nombre de la fuente deseada
-        fontSize: 60,
-        fontWeight: 'bold',
-        fontFamily: 'sans-serif',
-        color: 'white',
-        marginBottom: 70,
+    fontSize: 35,
+    fontWeight: 'bold',
+    fontFamily: 'sans-serif',
+    color: 'white',
+    marginBottom: 50,
     },
     menuItem: {
-        padding: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-        width: '100%',
-        alignItems: 'flex-start',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '50%',
+        height: 50,
+        marginBottom: 20,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: 'transparent',
+        backgroundColor: '#0D275A',
     },
     menuItemText: {
         color: 'white',
@@ -81,7 +98,6 @@ const styles = StyleSheet.create({
     },
     largeText: {
         fontSize: 20,
-        fontWeight: 'bold',
     },
     logoutButton: {
         backgroundColor: 'red',
@@ -89,7 +105,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 14,
         borderRadius: 20,
         marginTop: 20,
-        width: '11.5%',
+        width: '30%',
+        alignItems: 'center',
     },
     backButton: {
         position: 'absolute',
@@ -97,7 +114,6 @@ const styles = StyleSheet.create({
         left: 30,
         zIndex: 1, // Para que el botón esté por encima de los otros elementos
     },
-    
 });
 
 export default ProfileScreen;
