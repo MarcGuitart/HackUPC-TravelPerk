@@ -17,15 +17,29 @@
   </p>
 </div>
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+## The idea
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+TravelPerk inspired our small project. They are offer a travel management system to buisness. Our main idea was to make the most out of any meeting, joining those people together on other activities. We came up with an app idea with this main features:
 
-Technology used:
+- Have a personal account
+- Create & join plans
+- Filter based on best interest
+
+
+## Technology used
+
+As any modern platform we valued: crossplatform
+
 * Expo & React Native for the frontend
+
 * Supabase for the backend
 
+
+## Learning
+
+A fer
+- It's possible to have a single codebase supporting native elements
+- Més coses
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -47,7 +61,6 @@ Technology used:
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
   npm install npm@latest -g
