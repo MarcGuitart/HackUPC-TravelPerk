@@ -79,7 +79,7 @@ export default function CreatePlanScreen({ navigation }) {
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <AntDesign name="arrowleft" size={24} color="white" />
       </TouchableOpacity>
-      <Text style={styles.title}>Create your plan</Text>
+      <Text style={styles.title}>Create an event</Text>
 
       <TextInput
         style={styles.input}
