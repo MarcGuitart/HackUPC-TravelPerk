@@ -4,56 +4,56 @@ import { AntDesign } from '@expo/vector-icons';
 import { supabase } from './src/supabase';
 
 export default function RegisterScreen({ navigation }) {
-  const [userEvents, setUserEvents] = useState([]);
+  const [userPlans, setUserPlans] = useState([]);
 
   useEffect(() => {
-
-    const fetchUserEvents = async () => {
+    const fetchUserPlans = async () => {
       try {
-        const { data: events, error: eventsError } = await supabase
-          .from('PlanTable')
+        const { data: plans, error: plansError } = await supabase
+          .from('UserPlans')
           .select('planName')
-          .eq('creatorId', userData.id);
+          .eq('userId', userData.id);
 
-        if (eventsError) {
-          throw new Error('Error fetching user events');
+        if (plansError) {
+          throw new Error('Error fetching user plans');
         }
 
-        setUserEvents(events || []);
+        setUserPlans(plans || []);
       } catch (error) {
-        console.error('Error fetching user events:', error.message);
+        console.error('Error fetching user plans:', error.message);
       }
     };
-    fetchUserEvents();
+
+    fetchUserPlans();
   }, []);
 
   return (
     <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
-  <View style={styles.container}>
-    <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-      <AntDesign name="arrowleft" size={24} color="white" />
-    </TouchableOpacity>
-    <Text style={styles.title}>Events created by you</Text>
-    <View style={styles.eventsContainer}>
-      {userEvents.length > 0 ? (
-        userEvents.map((event, index) => (
-          <Text key={index} style={styles.userDataText}>{event.planName}</Text>
-        ))
-      ) : (
-        <View>
-          <Text style={[styles.userDataText, styles.boldText]}>
-            At the moment, You haven't created any event...
-          </Text>
-          <TouchableOpacity
-            style={styles.createEventButton}
-            onPress={() => navigation.navigate('Events')}
-            <Text style={styles.createEventButtonText}>Create Event</Text>
-          </TouchableOpacity>
+      <View style={styles.container}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <AntDesign name="arrowleft" size={24} color="white" />
+        </TouchableOpacity>
+        <Text style={styles.title}>Events you're attending</Text>
+        <View style={styles.plansContainer}>
+          {userPlans.length > 0 ? (
+            userPlans.map((plan, index) => (
+              <Text key={index} style={styles.planText}>{plan.planName}</Text>
+            ))
+          ) : (
+            <View>
+              <Text style={[styles.noPlansText, styles.boldText]}>
+                You haven't created any event yet...
+              </Text>
+              <TouchableOpacity
+                style={styles.createEventButton}
+                onPress={() => navigation.navigate('Event')}>
+                <Text style={styles.createEventButtonText}>Create Event</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
-      )}
-    </View>
-  </View>
-</ImageBackground>
+      </View>
+    </ImageBackground>
   );
 }
 
@@ -80,32 +80,31 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center",
   },
-  userDataContainer: {
+  plansContainer: {
     marginTop: 20,
-    marginBottom:20,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    padding: 20,
-    borderRadius: 10,
-    width: '80%',
-  },
-  userDataItem: {
-    marginBottom: 15,
-    flexDirection: 'row',
     alignItems: 'center',
   },
-  userDataLabel: {
-    color: 'white',
-    fontSize: 18,
-  },
-  userDataText: {
+  planText: {
     color: 'white',
     fontSize: 16,
+    marginBottom: 10,
+  },
+  noPlansText: {
+    color: 'white',
+    fontSize: 16,
+    marginBottom: 10,
   },
   boldText: {
     fontWeight: 'bold',
-    marginRight: 5,
   },
-  eventsContainer: {
-    marginTop: 20,
+  createEventButton: {
+    backgroundColor: '#28A4D4',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  createEventButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
