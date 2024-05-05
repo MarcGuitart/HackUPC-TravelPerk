@@ -76,6 +76,7 @@
         return (
             <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
                 <ScrollView contentContainerStyle={styles.scrollView}>
+                    <Text style={{ fontSize: 32, fontWeight: 'bold', color: 'white', marginTop: 25, marginBottom:25 }}>Discover and meet people joining unique plans in your area:</Text>
                     <View style={styles.container}>
                         {plans.map((plan, index) => (
                             <View style={styles.cardContainer} key={index}>
@@ -87,7 +88,7 @@
                                     participantes={plan.participant}
                                 />
                                 <TouchableOpacity style={styles.joinButton} onPress={() => handleJoinEvent(plan.planName)}>
-                                <Text style={styles.joinButtonText}>Unirse</Text>
+                                <Text style={styles.joinButtonText}>Join</Text>
                             </TouchableOpacity>
                     
                             </View>
@@ -131,7 +132,8 @@
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: 10,
+            paddingVertical: 5,
+            paddingHorizontal: 20,
             backgroundColor: '#fff',
             borderTopWidth: 1,
             borderTopColor: '#ccc',
@@ -142,9 +144,9 @@
             alignItems: 'center',
         },
         addButton: {
-            width: 60,
-            height: 60,
-            borderRadius: 30,
+            width: 40,
+            height: 40,
+            borderRadius: 20,
             backgroundColor: 'blue',
             justifyContent: 'center',
             alignItems: 'center',
@@ -154,16 +156,22 @@
             alignItems: 'center', // Centrar los elementos horizontalmente
         },
         cardContainer: {
+            
+            marginTop: 20,
             width: '100%',
-            marginBottom: 20,
+            marginBottom: 10,
+            padding: 10,
+            backgroundColor: 'rgba(255, 255, 255, 0.85)',
+            borderRadius: 10,
         },
         
         joinButton: {
-            marginTop: 10,
+            marginTop: -7,
             paddingVertical: 5,
             paddingHorizontal: 10,
-            backgroundColor: 'blue',
+            backgroundColor: 'green',
             borderRadius: 5,
+            alignSelf: 'flex-end',
         },
         joinButtonText: {
             color: 'white',

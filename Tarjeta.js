@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
   icono: {
     marginRight: 5,
   },
+  
 });
 
 export default Tarjeta;
