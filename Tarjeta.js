@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
-const Tarjeta = ({ nombre, descripcion, ciudad, fechaHora }) => {
+const Tarjeta = ({ nombre, descripcion, ciudad, fechaHora, participantes }) => {
   return (
     <View style={styles.tarjeta}>
       <Text style={styles.titulo}>{nombre}</Text>
@@ -14,6 +14,12 @@ const Tarjeta = ({ nombre, descripcion, ciudad, fechaHora }) => {
       <View style={styles.infoContainer}>
         <Feather name="calendar" size={16} color="#888" style={styles.icono} />
         <Text style={styles.texto}>Fecha y Hora: {fechaHora}</Text>
+      </View>
+      <View style={styles.infoContainer}>
+        <Feather name="users" size={16} color="#888" style={styles.icono} />
+        <Text style={styles.texto}>
+      Participantes: {Array.isArray(participantes) ? participantes.join(', ') : ''}
+      </Text>
       </View>
     </View>
   );
