@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Platform, ImageBackground} from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Platform, ImageBackground} from 'react-native';
 import { supabase } from './src/supabase';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { AntDesign } from '@expo/vector-icons';
@@ -135,16 +135,19 @@ export default function CreatePlanScreen({ navigation }) {
         </>
       ) : Platform.OS === 'android' ? (
         <>
-          <Button
-            title="Select Date"
-            onPress={showDatepicker}
-            style={styles.input}
-          />
-          <Button
-            title="Select Time"
-            onPress={showTimepicker}
-            style={styles.input}
-          />
+        <TouchableOpacity
+                style={[styles.input, { backgroundColor: 'rgba(255, 255, 255, 0.7)' }]}
+                onPress={showDatepicker}
+            >
+                <Text style={styles.buttonText}>Select Date</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                style={[styles.input, { backgroundColor: 'rgba(255, 255, 255, 0.7)' }]}
+                onPress={showTimepicker}
+            >
+                <Text style={styles.buttonText}>Select Time</Text>
+            </TouchableOpacity>
         </>
       ) : (/*
         <>
@@ -172,10 +175,10 @@ export default function CreatePlanScreen({ navigation }) {
 </>
     )}
       <TouchableOpacity
-          style={[styles.button, { backgroundColor: '#28A4D4' }]}
+          style={[styles.button, { backgroundColor: '#0D275A' }]}
           onPress={handleCreatePlan}
         >
-          <Text style={styles.buttonText}>Create Plan</Text>
+          <Text style={styles.buttonText2}>Create Plan</Text>
         </TouchableOpacity>
       {show && (
         <DateTimePicker
@@ -199,6 +202,10 @@ const styles = StyleSheet.create({
     padding: 100,
   },
   buttonText: {
+    color: '#76787D',
+    fontSize: 13,
+  },
+  buttonText2: {
     color: 'white',
     fontSize: 16,
   },
@@ -225,7 +232,7 @@ input: {
 button: {
   justifyContent: 'center',
   alignItems: 'center',
-  width: '20%',
+  width: '45%',
   height: 50,
   marginTop: 20, // Separación de las cajas de texto
   borderRadius: 10,
