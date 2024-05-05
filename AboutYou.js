@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginTop: 10,
-    width: '80%',
+    width: '45%',
     color: '#000', // Asegura que el texto dentro de la caja sea negro
   },
   backgroundImage: {
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: '11%',
+    width: '45%',
     height: 50,
     marginTop: 20, // Separación de las cajas de texto
     borderRadius: 10,
