@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     width: '50%',
     height: 50,
     marginBottom: 20,
-    marginLeft: 70,
+    marginLeft: 55,
     marginTop: 20,
     borderRadius: 10,
     borderWidth: 1,
@@ -114,5 +114,6 @@ const styles = StyleSheet.create({
   createEventButtonText: {
     color: 'white',
     fontSize: 16,
+    marginRight: 35,
   },
 });
