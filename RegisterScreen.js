@@ -10,22 +10,18 @@ export default function RegisterScreen({ navigation }) {
 
   const handleRegister = async () => {
     try {
-      // Validar que todos los campos estén completos
       if (!email || !password || !confirmPassword) {
         throw new Error('Please fill in all fields');
       }
 
-      // Validar que el email sea una dirección de email válida
       if (!validateEmail(email)) {
         throw new Error('Please enter a valid email address');
       }
 
-      // Validar que la contraseña tenga al menos 6 caracteres
       if (password.length < 6) {
         throw new Error('Password must be at least 6 characters long');
       }
 
-      // Validar que las contraseñas coincidan
       if (password !== confirmPassword) {
         throw new Error('Passwords do not match');
       }
@@ -35,14 +31,11 @@ export default function RegisterScreen({ navigation }) {
         password,
       });
 
-      // Implementar lógica para registrar al usuario
       console.log('Email:', email);
       console.log('Password:', password);
       console.log('Confirm Password:', confirmPassword);
 
-      // Aquí puedes agregar la lógica para registrar al usuario en la base de datos
 
-      // Navegar a la siguiente pantalla después del registro
       if (!error) navigation.navigate('Preferences');
       else throw new Error(error.message);
     } catch (error) {
@@ -51,7 +44,7 @@ export default function RegisterScreen({ navigation }) {
     }
   };
 
-  // Función para validar una dirección de email
+  //Función para validar una dirección de email
   const validateEmail = (email) => {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
@@ -108,7 +101,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontFamily: 'nombre-de-la-fuente', // Reemplaza 'nombre-de-la-fuente' con el nombre de la fuente deseada
+    fontFamily: 'nombre-de-la-fuente',
     fontSize: 35,
     fontWeight: 'bold',
     fontFamily: 'sans-serif',
@@ -123,7 +116,7 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   separator: {
-    height: 30, // Espacio entre los botones
+    height: 30,
   },
   button: {
     flexDirection: 'row',
@@ -145,7 +138,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 30,
     left: 30,
-    zIndex: 1, // Para que el botón esté por encima de los otros elementos
+    zIndex: 1,
   },
   backgroundImage: {
     flex: 1,
