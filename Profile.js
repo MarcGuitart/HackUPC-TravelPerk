@@ -35,7 +35,7 @@ const ProfileScreen = ({ navigation }) => {
                 {/* Eventos creados */}
                 <TouchableOpacity
                     style={[styles.menuItem, styles.largeText]}
-                    onPress={() => {/* Acción para eventos creados */}}
+                    onPress={() => navigation.navigate('CreatedEvents')}
                 >
                     <Text style={[styles.menuItemText, styles.largeText]}>Created Events</Text>
                 </TouchableOpacity>
@@ -43,7 +43,7 @@ const ProfileScreen = ({ navigation }) => {
                 {/* Participaciones */}
                 <TouchableOpacity
                     style={[styles.menuItem, styles.largeText]}
-                    onPress={() => {/* Acción para eventos en los que participa */}}
+                    onPress={() => navigation.navigate('JoinedEvents')}
                 >
                     <Text style={[styles.menuItemText, styles.largeText]}>Joined Events</Text>
                 </TouchableOpacity>

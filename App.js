@@ -10,6 +10,8 @@ import CreateEvent from './CreateEvent';
 import Search from './Search';
 import Profile from './Profile';
 import ProfileInformation from './ProfileInformation';
+import CreatedEvents from './CreatedEvents';
+import JoinedEvents from './JoinedEvents';
 import { supabase } from './src/supabase';
 
 
@@ -43,6 +45,9 @@ export default function App() {
         <Stack.Screen name="Search" component={Search} options={{headerShown:false}}/>
         <Stack.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
         <Stack.Screen name="ProfileInformation" component={ProfileInformation} options={{headerShown:false}}/>
+        <Stack.Screen name="CreatedEvents" component={CreatedEvents} options={{headerShown:false}}/>
+        <Stack.Screen name="JoinedEvents" component={JoinedEvents} options={{headerShown:false}}/>
+
 
         </>
       ) : (
