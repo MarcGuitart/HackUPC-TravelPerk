@@ -27,6 +27,9 @@ export default function App() {
 
   useEffect(() => {
     fetchUser();
+    const authListener = supabase.auth.onAuthStateChange((event, session) => {
+      fetchUser();
+    });
   }, []);
 
   return (
@@ -57,5 +60,6 @@ export default function App() {
         
       </Stack.Navigator>
     </NavigationContainer>
+    
   );
 }
