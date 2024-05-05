@@ -127,11 +127,12 @@
                     throw new Error(updateError.message);
                 }
         
-                alert('Te has salido del plan exitosamente.');
+                
             } catch (error) {
                 console.error('Error leaving the event:', error.message);
                 alert('Ha ocurrido un error al salir del plan. Por favor, inténtalo de nuevo más tarde.');
             }
+            fetchPlans();   
         };
         return (
             <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
@@ -147,13 +148,15 @@
                                     fechaHora={plan.date}
                                     participantes={plan.participant}
                                 />
-                                <TouchableOpacity style={styles.joinButton} onPress={() => handleJoinEvent(plan.planName)}>
-                                <Text style={styles.joinButtonText}>Join</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.leaveButton} onPress={() => handleLeaveEvent(plan.planName)}>
+                                <View style={styles.buttonContainer}>
+                                <TouchableOpacity style={styles.leaveButton} onPress={() => handleLeaveEvent(plan.planName)}>
                                 <Text style={styles.joinButtonText}>Leave</Text>
-                            </TouchableOpacity>
-                    
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.joinButton} onPress={() => handleJoinEvent(plan.planName)}>
+                                    <Text style={styles.joinButtonText}>Join</Text>
+                                </TouchableOpacity>
+                              
+                            </View>                    
                             </View>
                             
                         ))}
@@ -232,26 +235,50 @@
             borderRadius: 10,
         },
         
+
+        buttonContainer: {
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginTop: 0,
+        },
         joinButton: {
-            marginTop: -7,
-            paddingVertical: 5,
+            paddingVertical: 0,
             paddingHorizontal: 10,
             backgroundColor: 'green',
+            borderRadius: 5,
+        },
+        leaveButton: {
+            paddingVertical: 0,
+            paddingHorizontal: 10,
+            backgroundColor: 'red',
+            borderRadius: 5,
+        },
+        joinButtonText: {
+            color: 'white',
+        },
+        
+        leaveButton: {
+            marginTop: -5,
+            paddingVertical: 3.5,
+            marginHorizontal:5,
+            paddingHorizontal: 5,
+            backgroundColor: 'red',
             borderRadius: 5,
             alignSelf: 'flex-end',
         },
 
-        
-        leaveButton: {
-            marginTop: 5,
-            paddingVertical: 5,
-            paddingHorizontal: 10,
-            backgroundColor: 'red',
+        joinButton: {
+            marginTop: -5,
+            marginHorizontal:5,
+            paddingVertical: 3.5,
+            paddingHorizontal: 5,
+            backgroundColor: 'green',
             borderRadius: 5,
             alignSelf: 'flex-end',
         },
         joinButtonText: {
             color: 'white',
+            fontSize: 16,
         },
     });
 
