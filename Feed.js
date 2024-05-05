@@ -60,7 +60,7 @@
             const userAlreadyJoined = planData.participant.includes(creatorData[0].username);
 
             if (userAlreadyJoined) {
-                alert('El usuario ya se ha unido a este plan.');
+                alert('The user has already joined this plan.');
                 console.log('El usuario ya se ha unido a este plan.');
                 return;
             }
@@ -110,7 +110,7 @@
                 const userAlreadyJoined = planData.participant.includes(userData.username);
         
                 if (!userAlreadyJoined) {
-                    alert('El usuario no se ha unido a este plan.');
+                    alert('The user has not joined this plan.');
                     return;
                 }
         
