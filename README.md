@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://hackupc.com/">
     <img src="https://hackupc.com/biene.svg" alt="Logo" width="80" height="80">
   </a>
 
@@ -12,7 +12,7 @@
   <p align="center">
     An online event sharing platform for Android, iOS and web.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>View demo »</strong></a>
+    <a href="https://joinus.select/"><strong>View demo »</strong></a>
     <br />
   </p>
 </div>
@@ -30,18 +30,24 @@ Further steps would let the user share his interests, and also would let event o
 
 ## Technology used
 
-We took a modern approach and valued crossplatform, 
+We took a modern approach and valued crossplatform and native components.
 
-* Expo & React Native for the frontend
+- Git
 
-* Supabase for the backend
+- Expo & React Native for the frontend
+
+- Supabase for the backend
 
 
 ## Learning
 
-A fer
+We had to learn the project setup and file structure, React Native, we had to revise SQL and debug a lot.
+
 - It's possible to have a single codebase supporting native elements
-- Més coses
+
+- Team working, organization and colaboration
+
+- Hard mentality
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -74,8 +80,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Marc Guitart
+Guillermo Navas
+Guillem Angulo
+Àngel Masip
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/MarcGuitart/HackUPC-TravelPerk](https://github.com/MarcGuitart/HackUPC-TravelPerk)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
