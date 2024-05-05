@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Platform, ImageBackground} from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Platform, ImageBackground} from 'react-native';
 import { supabase } from './src/supabase';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function CreatePlanScreen({ navigation }) {
   const [planName, setPlanName] = useState('');
@@ -75,6 +76,9 @@ export default function CreatePlanScreen({ navigation }) {
   return (
     <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
     <View style={styles.container}>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+        <AntDesign name="arrowleft" size={24} color="white" />
+      </TouchableOpacity>
       <Text style={styles.title}>Create your plan</Text>
 
       <TextInput
@@ -231,5 +235,11 @@ input: {
     marginTop: 10,
     width: '90%',
     justifyContent: 'center',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 30,
+    left: 30,
+    zIndex: 1, // Para que el botón esté por encima de los otros elementos
   },
 });
