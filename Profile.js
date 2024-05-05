@@ -27,8 +27,8 @@ const ProfileScreen = ({ navigation }) => {
                 {/* Información del perfil */}
                 <TouchableOpacity
                     style={[styles.menuItem, styles.largeText]}
-                    onPress={() => {/* Acción para información del perfil */}}
-                >
+                    onPress={() => navigation.navigate('ProfileInformation')}
+                    >
                     <Text style={[styles.menuItemText, styles.largeText]}>Profile Information</Text>
                 </TouchableOpacity>
     
