@@ -81,6 +81,58 @@
         
         };
 
+        const handleLeaveEvent = async (planId) => {
+            try {
+                // Obtener los datos del plan al que el usuario se quiere unir
+                const { data: planData, error: planError } = await supabase
+                    .from('PlanTable')
+                    .select('*')
+                    .eq('planName', planId)
+                    .single();
+        
+                if (planError) {
+                    throw new Error(planError.message);
+                }
+        
+                // Obtener los datos del usuario actual
+                const { data: { user } } = await supabase.auth.getUser();
+                const { data: userData, error: userError } = await supabase
+                    .from('UserData')
+                    .select('*')
+                    .eq('id', user.id)
+                    .single();
+        
+                if (userError) {
+                    throw new Error(userError.message);
+                }
+        
+                // Verificar si el usuario ya se ha unido al plan
+                const userAlreadyJoined = planData.participant.includes(userData.username);
+        
+                if (!userAlreadyJoined) {
+                    alert('El usuario no se ha unido a este plan.');
+                    return;
+                }
+        
+                // Filtrar la lista de participantes para excluir al usuario actual
+                const updatedParticipants = planData.participant.filter(participant => participant !== userData.username);
+        
+                // Actualizar los participantes en la base de datos
+                const { data: updatedPlanData, error: updateError } = await supabase
+                    .from('PlanTable')
+                    .update({ participant: updatedParticipants })
+                    .eq('planName', planData.planName);
+        
+                if (updateError) {
+                    throw new Error(updateError.message);
+                }
+        
+                alert('Te has salido del plan exitosamente.');
+            } catch (error) {
+                console.error('Error leaving the event:', error.message);
+                alert('Ha ocurrido un error al salir del plan. Por favor, inténtalo de nuevo más tarde.');
+            }
+        };
         return (
             <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
                 <ScrollView contentContainerStyle={[styles.scrollView, Platform.OS === 'web' && styles.webScrollView]}>
@@ -96,6 +148,9 @@
                                     participantes={plan.participant}
                                 />
                                 <TouchableOpacity style={styles.joinButton} onPress={() => handleJoinEvent(plan.planName)}>
+                                <Text style={styles.joinButtonText}>Join</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.joinButton} onPress={() => handleLeaveEvent(plan.planName)}>
                                 <Text style={styles.joinButtonText}>Join</Text>
                             </TouchableOpacity>
                     

@@ -1,61 +1,38 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { supabase } from './src/supabase';
 
 export default function RegisterScreen({ navigation }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [userData, setUserData] = useState(null);
 
-  const handleRegister = async () => {
-    try {
-      // Validar que todos los campos estén completos
-      if (!email || !password || !confirmPassword) {
-        throw new Error('Please fill in all fields');
+  useEffect(() => {
+    const fetchUserData = async () => {
+
+
+
+
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        let { data: creatorData, error: creatorError } = await supabase
+        .from('UserData')
+        .select('*')
+        .eq('id', user.id);
+
+        console.log(creatorData.dni);
+        
+        if (error || !user) {
+          throw new Error('User not authenticated');
+        }
+
+        setUserData(data);
+      } catch (error) {
+        console.error('Error fetching user data:', error.message);
       }
+    };
 
-      // Validar que el email sea una dirección de email válida
-      if (!validateEmail(email)) {
-        throw new Error('Please enter a valid email address');
-      }
-
-      // Validar que la contraseña tenga al menos 6 caracteres
-      if (password.length < 6) {
-        throw new Error('Password must be at least 6 characters long');
-      }
-
-      // Validar que las contraseñas coincidan
-      if (password !== confirmPassword) {
-        throw new Error('Passwords do not match');
-      }
-
-      const { user, error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-
-      // Implementar lógica para registrar al usuario
-      console.log('Email:', email);
-      console.log('Password:', password);
-      console.log('Confirm Password:', confirmPassword);
-
-      // Aquí puedes agregar la lógica para registrar al usuario en la base de datos
-
-      // Navegar a la siguiente pantalla después del registro
-      if (!error) navigation.navigate('Preferences');
-      else throw new Error(error.message);
-    } catch (error) {
-      alert(error.message);
-      console.error('Error registering user:', error.message);
-    }
-  };
-
-  // Función para validar una dirección de email
-  const validateEmail = (email) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  };
+    fetchUserData();
+  }, []);
 
   return (
     <ImageBackground source={require('./assets/background_pattern.png')} style={styles.backgroundImage}>
@@ -63,39 +40,16 @@ export default function RegisterScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <AntDesign name="arrowleft" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.title}>Create your account</Text>
-        
-        <TextInput
-          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10, width: '45%' }}
-          placeholder="Enter your email"
-          keyboardType="email-address"
-          value={email}
-          onChangeText={text => setEmail(text)}
-        />
-        
-        <TextInput
-          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10, width: '45%' }}
-          placeholder="Enter your password"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={text => setPassword(text)}
-        />
-        
-        <TextInput
-          style={{ backgroundColor: 'white', padding: 10, borderRadius: 5, marginTop: 10, width: '45%' }}
-          placeholder="Confirm your password"
-          secureTextEntry={true}
-          value={confirmPassword}
-          onChangeText={text => setConfirmPassword(text)}
-        />
-        <View style={styles.separator}></View>
-        <TouchableOpacity
-          style={[styles.button, { backgroundColor: '#042f83' }]}
-          onPress={handleRegister}
-        >
-          <AntDesign name="adduser" size={24} color="white" />
-          <Text style={styles.buttonText}>Register</Text>
-        </TouchableOpacity>
+        <Text style={styles.title}>User Information</Text>
+
+        {/* Matriz de datos del usuario */}
+        <View style={styles.userDataContainer}>
+          <Text style={styles.userDataText}>DNI: {userData?.dni}</Text>
+          <Text style={styles.userDataText}>Username: {userData?.username}</Text>
+          <Text style={styles.userDataText}>PhoneNumber: {userData?.phone}</Text>
+          <Text style={styles.userDataText}>Age: {userData?.age}</Text>
+          {/* Agrega más campos de información según tu modelo de datos */}
+        </View>
       </View>
     </ImageBackground>
   );
@@ -115,32 +69,6 @@ const styles = StyleSheet.create({
     color: 'white',
     marginBottom: 50,
   },
-  input: {
-    backgroundColor: 'white',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 10,
-    width: '80%',
-  },
-  separator: {
-    height: 30, // Espacio entre los botones
-  },
-  button: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '45%',
-    height: 50,
-    marginBottom: 20,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'transparent',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    marginLeft: 10,
-  },
   backButton: {
     position: 'absolute',
     top: 30,
@@ -151,5 +79,17 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
+  },
+  userDataContainer: {
+    marginTop: 20,
+    borderWidth: 1,
+    borderColor: 'white',
+    padding: 10,
+    borderRadius: 5,
+  },
+  userDataText: {
+    color: 'white',
+    fontSize: 16,
+    marginBottom: 5,
   },
 });
