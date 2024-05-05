@@ -171,11 +171,12 @@ export default function CreatePlanScreen({ navigation }) {
 />
 </>
     )}
-      <Button
-        title="Create plan"
-        onPress={handleCreatePlan}
-        style={styles.button}
-      />
+      <TouchableOpacity
+          style={[styles.button, { backgroundColor: '#28A4D4' }]}
+          onPress={handleCreatePlan}
+        >
+          <Text style={styles.buttonText}>Create Plan</Text>
+        </TouchableOpacity>
       {show && (
         <DateTimePicker
           testID="dateTimePicker"
@@ -199,8 +200,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontSize: 18,
-    marginLeft: 10,
+    fontSize: 16,
   },
   title: {
     fontFamily: 'nombre-de-la-fuente', // Reemplaza 'nombre-de-la-fuente' con el nombre de la fuente deseada
@@ -222,10 +222,15 @@ input: {
   marginTop: 10,
   width: '100%',
 },
-  button: {
-    padding: 10,
-    width: '100%',
-  },
+button: {
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '20%',
+  height: 50,
+  marginTop: 20, // Separación de las cajas de texto
+  borderRadius: 10,
+  backgroundColor: '#28A4D4',
+},
   datePickerButton: {
     flexDirection: 'row',
     alignItems: 'center',
