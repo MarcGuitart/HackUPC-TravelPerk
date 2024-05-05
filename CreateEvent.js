@@ -48,7 +48,7 @@ export default function CreatePlanScreen({ navigation }) {
 
       console.log('Datos guardados correctamente:', data);
 
-      navigation.navigate('Feed');
+      navigation.navigate('Feed', { refresh: true });
     } catch (error) {
       console.error('Error al guardar las preferencias:', error.message);
     }

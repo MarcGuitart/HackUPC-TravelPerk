@@ -4,22 +4,29 @@
     import { supabase } from './src/supabase';
     import Tarjeta from './Tarjeta';
 
-    const FeedScreen = ({ navigation }) => {
+    const FeedScreen = ({ navigation, route  }) => {
         const [plans, setPlans] = useState([]);
 
-        useEffect(() => {
-            async function fetchPlans() {
-                let { data, error } = await supabase.from('PlanTable').select('*');
+        async function fetchPlans() {
+            let { data, error } = await supabase.from('PlanTable').select('*');
 
-                if (error) {
-                    console.error('Error fetching plans:', error.message);
-                } else {
-                    setPlans(data);
-                }
+            if (error) {
+                console.error('Error fetching plans:', error.message);
+            } else {
+                setPlans(data);
             }
+        }
 
+        useEffect(() => {
             fetchPlans();
         }, []);
+
+        // Actualitzar les dades quan es torni a la pantalla
+        useEffect(() => {
+        if (route.params?.refresh) {
+            fetchPlans();
+          }
+        }, [route.params?.refresh]);
 
         const handleSearchPress = () => {
             navigation.navigate('Search');
@@ -69,7 +76,8 @@
             .from ('PlanTable')
             .update({participant: updatedParticipants})
             .eq('planName', planData.planName);
-            
+
+            fetchPlans();            
         
         };
 
