@@ -150,8 +150,8 @@
                                 <TouchableOpacity style={styles.joinButton} onPress={() => handleJoinEvent(plan.planName)}>
                                 <Text style={styles.joinButtonText}>Join</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.joinButton} onPress={() => handleLeaveEvent(plan.planName)}>
-                                <Text style={styles.joinButtonText}>Join</Text>
+                            <TouchableOpacity style={styles.leaveButton} onPress={() => handleLeaveEvent(plan.planName)}>
+                                <Text style={styles.joinButtonText}>Leave</Text>
                             </TouchableOpacity>
                     
                             </View>
@@ -237,6 +237,16 @@
             paddingVertical: 5,
             paddingHorizontal: 10,
             backgroundColor: 'green',
+            borderRadius: 5,
+            alignSelf: 'flex-end',
+        },
+
+        
+        leaveButton: {
+            marginTop: 5,
+            paddingVertical: 5,
+            paddingHorizontal: 10,
+            backgroundColor: 'red',
             borderRadius: 5,
             alignSelf: 'flex-end',
         },
